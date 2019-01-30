@@ -1,3 +1,4 @@
+import sys
 import random
 
 from random import randint
@@ -16,11 +17,7 @@ json_file='heroStats.json'
 json_data=open(json_file)
 dataset = json.load(json_data)
 
-
-
 #import matplotlib.pyplot as plt
-
-
 
 xglobal = []
 yglobal = []
@@ -30,13 +27,12 @@ gglobal = 0
 gglobalTemp = 0
 
 ####### Variaveis Importantes #######
-
 # Numero de heros
 numheros = 5
 # Quantidade de heros presentes na base de dados
 qtheros = 121
 # Populacao Total
-populacao = 15
+populacao = 30
 # Probabilidade De Um Individuo Sofrer Mutacao
 probmut = 0.2
 # Probabilidade De Dois Individuos Cruzarem
@@ -44,7 +40,7 @@ probcross = 0.6
 # Quantidade maxima de Geracoes
 numgeracoes = 300
 # Melhor resultado possivel da funcao de avaliacao
-resulfunc = 1000
+resulfunc = 1000000
 
 #####################################
 
@@ -72,19 +68,12 @@ def validaFilho(vetor):
                     vetor[i] = f
     return vetor
 
-# Attribute generator 
-#                      define 'attr_bool' to be an attribute ('gene')
-#                      which corresponds to integers sampled uniformly
-#                      from the range [0,1] (i.e. 0 or 1 with equal
-#                      probability)
-
 gen_idx = partial(sample, range(qtheros), numheros)
 
 toolbox.register("inputs", gen_idx)
 
 # Structure initializers
 #                         define 'individual' to be an individual
-#                         consisting of 100 'attr_bool' elements ('genes')
 toolbox.register("individual", tools.initIterate, creator.Individual, 
     toolbox.inputs)
 
@@ -93,18 +82,71 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
 # funcao de fitness sendo calculada apenas com agilidade
 def evalOneMax(individual):
-    print("----------------------------------")
-    print(individual)
-    fitvalue=0
-    for id_hero in individual:
-        #print (id_hero)
-        for data in dataset:
-            if data['id']==id_hero:
-                print(str(data['localized_name']) + ' agility = ' + str(data['base_agi']))
-                fitvalue = fitvalue + data['base_agi']
+	strategy = sys.argv[1]
 
-    print ('time fitness = ' +str(fitvalue))
-    return fitvalue,
+	# f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
+	if strategy == 'gank':
+		print("----------------------------------")
+		print(individual)
+		fitvalue=0
+		initiator=-1
+		attack=0
+		speed=0
+		for id_hero in individual:
+			for data in dataset:
+				if data['id']==id_hero:
+					print(str(data['localized_name']))
+					attack = attack + data['base_attack_max']
+					#print("atack ", attack)
+					speed = speed + data['move_speed']
+					#print("velocidade ", speed)
+					for r in data['roles']:
+						if r == "Initiator":
+							initiator=10
+						else:
+							initiator=0
+					
+		fitvalue=attack+speed+initiator
+		print ('team fitness = ' +str(fitvalue))
+		return fitvalue,
+
+	elif strategy == 'teamfight':
+		print("----------------------------------")
+		print(individual)
+		fitvalue=0
+		carry=-1
+		strength=0
+		atk_rate=0
+		for id_hero in individual:
+			for data in dataset:
+				if data['id']==id_hero:
+					print(str(data['localized_name']))
+					strength = strength + data['base_str']
+					#print("strength ", strength)
+					atk_rate = atk_rate + data['attack_rate']
+					#print("velocidade ", atk_rate)
+					for r in data['roles']:
+						if r == "Carry":
+							carry=10
+						else:
+							carry=0
+					
+		fitvalue=strength+atk_rate+carry
+		print ('team fitness = ' +str(fitvalue))
+		return fitvalue,
+
+	elif strategy == 'pusher':
+		print("----------------------------------")
+		print(individual)
+		fitvalue=0
+		for id_hero in individual:
+			for data in dataset:
+				if data['id']==id_hero:
+					print(str(data['localized_name']) + ' agility = ' + str(data['base_agi']))
+					fitvalue = fitvalue + data['base_agi']
+		
+		print ('time fitness = ' +str(fitvalue))
+		return fitvalue,
 
 #----------
 # Operator registration

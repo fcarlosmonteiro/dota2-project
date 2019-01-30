@@ -8,4 +8,6 @@ for id_hero in range(1,10):
 	for data in dataset:
 		if data['id']==id_hero:
 			fitvalue = fitvalue + data['base_agi']
-print (fitvalue)
+			for r in data['roles']:
+				print (r)
+#print (fitvalue)
