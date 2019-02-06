@@ -6,18 +6,18 @@ from deap import base
 from deap import creator
 from deap import tools
 
-
 from random import sample
 from functools import partial
 
 import json
 import numpy as np
+import matplotlib.pyplot as plt
 
 json_file='heroStats.json'
 json_data=open(json_file)
 dataset = json.load(json_data)
 
-#import matplotlib.pyplot as plt
+
 
 xglobal = []
 yglobal = []
@@ -277,17 +277,17 @@ def main():
     print("Best individual is %s, %s" % (best_ind_name, best_ind.fitness.values))
     print("-- End of (successful) evolution --")
 
-'''
-        # Geracao de grafico final
+
+    #evolution plot
     fig, ax = plt.subplots()
     ax.plot(xglobal, yglobal, 'b--')
     style = dict(size=10, color='gray')
     plt.scatter(xglobal, yglobal, color='green')
-    txtTemp = '{} individuos\nMelhor solucao: {}\nGeracao {}\n{}'.format(populacao, best_ind.fitness.values[0], gglobal, resultFinal)
+    txtTemp = '{} individuos\nMelhor solucao: {}\nGeracao {}\n{}'.format(populacao, best_ind.fitness.values[0], gglobal, best_ind)
     ax.annotate(txtTemp, xy=(best_ind.fitness.values[0], gglobal), xytext=(best_ind.fitness.values[0]-4, gglobal-4),arrowprops=dict(facecolor='black', shrink=0.05))
-    plt.xlabel('Funcao')
-    plt.ylabel('Geracao')
-    plt.show()'''
+    plt.xlabel('Fitness function value')
+    plt.ylabel('Generation')
+    plt.show()
 
     
 if __name__ == "__main__":
