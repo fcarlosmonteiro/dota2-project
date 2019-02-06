@@ -1,17 +1,18 @@
 import sys
+import json
 import random
+import requests
+import numpy as np
+import matplotlib.pyplot as plt
 
 from random import randint
 from deap import base
 from deap import creator
 from deap import tools
+from PIL import Image
 
 from random import sample
 from functools import partial
-
-import json
-import numpy as np
-import matplotlib.pyplot as plt
 
 json_file='heroStats.json'
 json_data=open(json_file)
@@ -268,11 +269,15 @@ def main():
 
     best_ind = tools.selBest(pop, 1)[0]
     
+    #get heros name
     best_ind_name =[]
+    image_urls=[]
     for b in best_ind:
         for data in dataset:
             if data['id']==b:
                 best_ind_name.append(str(data['localized_name']))
+            	image_urls.append(data['img'])
+
 
     print("Best individual is %s, %s" % (best_ind_name, best_ind.fitness.values))
     print("-- End of (successful) evolution --")
@@ -288,6 +293,25 @@ def main():
     plt.xlabel('Fitness function value')
     plt.ylabel('Generation')
     plt.show()
+
+
+    #the best team plot
+    #it works just with internet
+    images=[]
+    for im in image_urls:
+    	images.append(Image.open(requests.get('https://api.opendota.com'+im, stream=True).raw))
+
+    widths, heights = zip(*(i.size for i in images))
+    total_width = sum(widths)
+    max_height = max(heights)
+    new_im = Image.new('RGB', (total_width, max_height))
+    x_offset = 0
+    for im in images:
+    	new_im.paste(im, (x_offset,0))
+    	x_offset += im.size[0]
+
+	new_im.save('test.jpg')
+
 
     
 if __name__ == "__main__":

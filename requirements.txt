@@ -1,3 +1,5 @@
 deap
 numpy
 matplotlib
+pillow
+requests
