@@ -1,28 +1,18 @@
-import sys
-import requests
-from PIL import Image
+import json
 
-images=[]
-url0 = 'https://api.opendota.com/apps/dota2/images/heroes/antimage_full.png?'
-url1 = 'https://api.opendota.com/apps/dota2/images/heroes/bloodseeker_full.png?'
-url2 = 'https://api.opendota.com/apps/dota2/images/heroes/axe_full.png?'
+json_file='heroStats.json'
+json_data=open(json_file)
+dataset = json.load(json_data)
 
-images.append(Image.open(requests.get(url0, stream=True).raw))
-images.append(Image.open(requests.get(url1, stream=True).raw))
-images.append(Image.open(requests.get(url2, stream=True).raw))
+atkmin = 100000
+for data in dataset:
+	if data['move_speed'] < atkmin:
+		atkmin=data['move_speed']
+print(atkmin)
 
-print(images)
-
-widths, heights = zip(*(i.size for i in images))
-
-total_width = sum(widths)
-max_height = max(heights)
-
-new_im = Image.new('RGB', (total_width, max_height))
-
-x_offset = 0
-for im in images:
-  new_im.paste(im, (x_offset,0))
-  x_offset += im.size[0]
-
-new_im.save('test.jpg')
+#para 5 heros
+#atk min 11 (55 for 5 heros) e max 70 (350 for 5 heros)
+#move min 270 (1350 for 5 heros) e max 335 (1675 for 5 heros)
+#roles min -5 e max 10
+#gankFitMin = 320
+#gankFitMax = 2075

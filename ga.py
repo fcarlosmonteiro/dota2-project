@@ -33,13 +33,13 @@ numheros = 5
 # Quantidade de heros presentes na base de dados
 qtheros = 121
 # Populacao Total
-populacao = 30
+populacao = 50
 # Probabilidade De Um Individuo Sofrer Mutacao
-probmut = 0.2
+probmut = 0.7
 # Probabilidade De Dois Individuos Cruzarem
-probcross = 0.6
+probcross = 0.3
 # Quantidade maxima de Geracoes
-numgeracoes = 300
+numgeracoes = 100
 # Melhor resultado possivel da funcao de avaliacao
 resulfunc = 1000000
 
@@ -83,71 +83,74 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
 # funcao de fitness sendo calculada apenas com agilidade
 def evalOneMax(individual):
-	strategy = sys.argv[1]
+    strategy = sys.argv[1]
 
-	# f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
-	if strategy == 'gank':
-		print("----------------------------------")
-		print(individual)
-		fitvalue=0
-		initiator=-1
-		attack=0
-		speed=0
-		for id_hero in individual:
-			for data in dataset:
-				if data['id']==id_hero:
-					print(str(data['localized_name']))
-					attack = attack + data['base_attack_max']
-					#print("atack ", attack)
-					speed = speed + data['move_speed']
-					#print("velocidade ", speed)
-					for r in data['roles']:
-						if r == "Initiator":
-							initiator=10
-						else:
-							initiator=0
-					
-		fitvalue=attack+speed+initiator
-		print ('team fitness = ' +str(fitvalue))
-		return fitvalue,
+    # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
+    if strategy == 'gank':
+        print("----------------------------------")
+        print(individual)
+        fitvalue=0
+        initiator=0
+        attack=0
+        speed=0
+        for id_hero in individual:
+            for data in dataset:
+                if data['id']==id_hero:
+                    print(str(data['localized_name']))
+                    attack = attack + data['base_attack_max']
+                    #print("atack ", attack)
+                    speed = speed + data['move_speed']
+                    #print("velocidade ", speed)
+                    for r in data['roles']:
+                        if r == "Initiator":
+                            initiator=10
+                        else:
+                            initiator=-5
+                    
+        fitvalue=attack+speed+initiator
+        fitvalue = (float(fitvalue)-300)/(2075-300)
+        print ('team fitness = ' +str(fitvalue))
+        return fitvalue,
+        #normalized = (x-min(x))/(max(x)-min(x))
 
-	elif strategy == 'teamfight':
-		print("----------------------------------")
-		print(individual)
-		fitvalue=0
-		carry=-1
-		strength=0
-		atk_rate=0
-		for id_hero in individual:
-			for data in dataset:
-				if data['id']==id_hero:
-					print(str(data['localized_name']))
-					strength = strength + data['base_str']
-					#print("strength ", strength)
-					atk_rate = atk_rate + data['attack_rate']
-					#print("velocidade ", atk_rate)
-					for r in data['roles']:
-						if r == "Carry":
-							carry=10
-						else:
-							carry=0
-					
-		fitvalue=strength+atk_rate+carry
-		print ('team fitness = ' +str(fitvalue))
-		return fitvalue,
 
-	elif strategy == 'pusher':
-		print("----------------------------------")
-		print(individual)
-		fitvalue=0
-		for id_hero in individual:
-			for data in dataset:
-				if data['id']==id_hero:
-					print(str(data['localized_name']) + ' agility = ' + str(data['base_agi']))
-					fitvalue = fitvalue + data['base_agi']
-		
-		print ('time fitness = ' +str(fitvalue))
-		return fitvalue,
+    elif strategy == 'teamfight':
+        print("----------------------------------")
+        print(individual)
+        fitvalue=0
+        carry=-1
+        strength=0
+        atk_rate=0
+        for id_hero in individual:
+            for data in dataset:
+                if data['id']==id_hero:
+                    print(str(data['localized_name']))
+                    strength = strength + data['base_str']
+                    #print("strength ", strength)
+                    atk_rate = atk_rate + data['attack_rate']
+                    #print("velocidade ", atk_rate)
+                    for r in data['roles']:
+                        if r == "Carry":
+                            carry=10
+                        else:
+                            carry=0
+                    
+        fitvalue=strength+atk_rate+carry
+        print ('team fitness = ' +str(fitvalue))
+        return fitvalue,
+
+    elif strategy == 'pusher':
+        print("----------------------------------")
+        print(individual)
+        fitvalue=0
+        for id_hero in individual:
+            for data in dataset:
+                if data['id']==id_hero:
+                    print(str(data['localized_name']) + ' agility = ' + str(data['base_agi']))
+                    fitvalue = fitvalue + data['base_agi']
+        
+        print ('time fitness = ' +str(fitvalue))
+        return fitvalue,
 
 #----------
 # Operator registration
@@ -276,7 +279,7 @@ def main():
         for data in dataset:
             if data['id']==b:
                 best_ind_name.append(str(data['localized_name']))
-            	image_urls.append(data['img'])
+                image_urls.append(data['img'])
 
 
     print("Best individual is %s, %s" % (best_ind_name, best_ind.fitness.values))
@@ -288,8 +291,8 @@ def main():
     ax.plot(xglobal, yglobal, 'b--')
     style = dict(size=10, color='gray')
     plt.scatter(xglobal, yglobal, color='green')
-    txtTemp = '{} individuos\nMelhor solucao: {}\nGeracao {}\n{}'.format(populacao, best_ind.fitness.values[0], gglobal, best_ind)
-    ax.annotate(txtTemp, xy=(best_ind.fitness.values[0], gglobal), xytext=(best_ind.fitness.values[0]-4, gglobal-4),arrowprops=dict(facecolor='black', shrink=0.05))
+    #txtTemp = '{} individuos\nMelhor solucao: {}\nGeracao {}\n{}'.format(populacao, best_ind.fitness.values[0], gglobal, best_ind)
+    #ax.annotate(txtTemp, xy=(best_ind.fitness.values[0], gglobal), xytext=(best_ind.fitness.values[0]-4, gglobal-4),arrowprops=dict(facecolor='black', shrink=0.05))
     plt.xlabel('Fitness function value')
     plt.ylabel('Generation')
     plt.show()
@@ -299,7 +302,7 @@ def main():
     #it works just with internet
     images=[]
     for im in image_urls:
-    	images.append(Image.open(requests.get('https://api.opendota.com'+im, stream=True).raw))
+        images.append(Image.open(requests.get('https://api.opendota.com'+im, stream=True).raw))
 
     widths, heights = zip(*(i.size for i in images))
     total_width = sum(widths)
@@ -307,10 +310,10 @@ def main():
     new_im = Image.new('RGB', (total_width, max_height))
     x_offset = 0
     for im in images:
-    	new_im.paste(im, (x_offset,0))
-    	x_offset += im.size[0]
+        new_im.paste(im, (x_offset,0))
+        x_offset += im.size[0]
 
-	new_im.save('test.jpg')
+    new_im.save('test.jpg')
 
 
     
