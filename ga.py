@@ -97,9 +97,9 @@ def evalOneMax(individual):
             for data in dataset:
                 if data['id']==id_hero:
                     print(str(data['localized_name']))
-                    attack = attack + data['base_attack_max']
+                    attack = attack + data['stats']['base_attack_max']
                     #print("atack ", attack)
-                    speed = speed + data['move_speed']
+                    speed = speed + data['stats']['move_speed']
                     #print("velocidade ", speed)
                     for r in data['tags']:
                         if r == "Initiator":
@@ -125,9 +125,9 @@ def evalOneMax(individual):
             for data in dataset:
                 if data['id']==id_hero:
                     print(str(data['localized_name']))
-                    strength = strength + data['base_str']
+                    strength = strength + data['stats']['base_str']
                     #print("strength ", strength)
-                    atk_rate = atk_rate + data['attack_rate']
+                    atk_rate = atk_rate + data['stats']['attack_rate']
                     #print("velocidade ", atk_rate)
                     for r in data['tags']:
                         if r == "Carry":
@@ -147,7 +147,7 @@ def evalOneMax(individual):
             for data in dataset:
                 if data['id']==id_hero:
                     print(str(data['localized_name']) + ' agility = ' + str(data['base_agi']))
-                    fitvalue = fitvalue + data['base_agi']
+                    fitvalue = fitvalue + data['stats']['base_agi']
         
         print ('time fitness = ' +str(fitvalue))
         return fitvalue,
@@ -279,7 +279,7 @@ def main():
         for data in dataset:
             if data['id']==b:
                 best_ind_name.append(str(data['localized_name']))
-                image_urls.append(data['img'])
+                image_urls.append(data['icon'])
 
 
     print("Best individual is %s, %s" % (best_ind_name, best_ind.fitness.values))
@@ -302,7 +302,7 @@ def main():
     #it works just with internet
     images=[]
     for im in image_urls:
-        images.append(Image.open(requests.get('https://api.opendota.com'+im, stream=True).raw))
+        images.append(Image.open(im, stream=True).raw))
 
     widths, heights = zip(*(i.size for i in images))
     total_width = sum(widths)
