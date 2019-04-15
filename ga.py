@@ -101,7 +101,7 @@ def evalOneMax(individual):
                     #print("atack ", attack)
                     speed = speed + data['move_speed']
                     #print("velocidade ", speed)
-                    for r in data['roles']:
+                    for r in data['tags']:
                         if r == "Initiator":
                             initiator=10
                         else:
@@ -129,7 +129,7 @@ def evalOneMax(individual):
                     #print("strength ", strength)
                     atk_rate = atk_rate + data['attack_rate']
                     #print("velocidade ", atk_rate)
-                    for r in data['roles']:
+                    for r in data['tags']:
                         if r == "Carry":
                             carry=10
                         else:
