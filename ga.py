@@ -14,7 +14,7 @@ from PIL import Image
 from random import sample
 from functools import partial
 
-json_file='heroStats.json'
+json_file='championStats.json'
 json_data=open(json_file)
 dataset = json.load(json_data)
 
@@ -31,7 +31,7 @@ gglobalTemp = 0
 # Numero de heros
 numheros = 5
 # Quantidade de heros presentes na base de dados
-qtheros = 121
+qtheros = 141
 # Populacao Total
 populacao = 50
 # Probabilidade De Um Individuo Sofrer Mutacao
@@ -95,14 +95,14 @@ def evalOneMax(individual):
         speed=0
         for id_hero in individual:
             for data in dataset:
-                if data['id']==id_hero:
-                    print(str(data['localized_name']))
-                    attack = attack + data['stats']['base_attack_max']
+                if data['key']==id_hero:
+                    print(str(data['name']))
+                    attack = attack + data['stats']['attackdamage']
                     #print("atack ", attack)
-                    speed = speed + data['stats']['move_speed']
+                    speed = speed + data['stats']['movespeed']
                     #print("velocidade ", speed)
                     for r in data['tags']:
-                        if r == "Initiator":
+                        if r == "Fighter":
                             initiator=10
                         else:
                             initiator=-5
@@ -121,16 +121,16 @@ def evalOneMax(individual):
         carry=-1
         strength=0
         atk_rate=0
-        for id_hero in individual:
-            for data in dataset:
-                if data['id']==id_hero:
-                    print(str(data['localized_name']))
-                    strength = strength + data['stats']['base_str']
+        for id_hero in individual:   
+            for data in dataset:                
+                if data['key']==id_hero:
+                    strength = strength + data['stats']['attackdamage']
+                    print(data['stats']['attackdamage'])
                     #print("strength ", strength)
-                    atk_rate = atk_rate + data['stats']['attack_rate']
+                    atk_rate = atk_rate + data['stats']['attackspeedperlevel']
                     #print("velocidade ", atk_rate)
                     for r in data['tags']:
-                        if r == "Carry":
+                        if r == "Fighter":
                             carry=10
                         else:
                             carry=0
@@ -145,8 +145,8 @@ def evalOneMax(individual):
         fitvalue=0
         for id_hero in individual:
             for data in dataset:
-                if data['id']==id_hero:
-                    print(str(data['localized_name']) + ' agility = ' + str(data['base_agi']))
+                if data['key']==id_hero:
+                    print(str(data['name']) + ' agility = ' + str(data['base_agi']))
                     fitvalue = fitvalue + data['stats']['base_agi']
         
         print ('time fitness = ' +str(fitvalue))
@@ -277,8 +277,8 @@ def main():
     image_urls=[]
     for b in best_ind:
         for data in dataset:
-            if data['id']==b:
-                best_ind_name.append(str(data['localized_name']))
+            if data['key']==b:
+                best_ind_name.append(str(data['name']))
                 image_urls.append(data['icon'])
 
 
@@ -301,19 +301,19 @@ def main():
     #the best team plot
     #it works just with internet
     images=[]
-    for im in image_urls:
-        images.append(Image.open(im, stream=True).raw))
+    ##for im in image_urls:
+        ##images.append(Image.open(requests.get(im, stream=True).raw))
 
-    widths, heights = zip(*(i.size for i in images))
-    total_width = sum(widths)
-    max_height = max(heights)
-    new_im = Image.new('RGB', (total_width, max_height))
-    x_offset = 0
-    for im in images:
-        new_im.paste(im, (x_offset,0))
-        x_offset += im.size[0]
+    ##widths, heights = zip(*(i.size for i in images))
+    ##total_width = sum(widths)
+    ##max_height = max(heights)
+    ##new_im = Image.new('RGB', (total_width, max_height))
+    ##x_offset = 0
+    ##for im in images:
+        ##new_im.paste(im, (x_offset,0))
+        ##x_offset += im.size[0]
 
-    new_im.save('test.jpg')
+    ##new_im.save('test.jpg')
 
 
     
