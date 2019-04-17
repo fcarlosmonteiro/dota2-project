@@ -122,10 +122,9 @@ def evalOneMax(individual):
         strength=0
         atk_rate=0
         for id_hero in individual:   
-            for data in dataset:                
-                if data['key']==id_hero:
+            for data in dataset:   
+                if int(data['key'])==id_hero:                    
                     strength = strength + data['stats']['attackdamage']
-                    print(data['stats']['attackdamage'])
                     #print("strength ", strength)
                     atk_rate = atk_rate + data['stats']['attackspeedperlevel']
                     #print("velocidade ", atk_rate)
@@ -277,7 +276,7 @@ def main():
     image_urls=[]
     for b in best_ind:
         for data in dataset:
-            if data['key']==b:
+            if int(data['key'])==b:
                 best_ind_name.append(str(data['name']))
                 image_urls.append(data['icon'])
 
@@ -301,19 +300,19 @@ def main():
     #the best team plot
     #it works just with internet
     images=[]
-    ##for im in image_urls:
-        ##images.append(Image.open(requests.get(im, stream=True).raw))
+    for im in image_urls:
+        images.append(Image.open(requests.get(im, stream=True).raw))
 
-    ##widths, heights = zip(*(i.size for i in images))
-    ##total_width = sum(widths)
-    ##max_height = max(heights)
-    ##new_im = Image.new('RGB', (total_width, max_height))
-    ##x_offset = 0
-    ##for im in images:
-        ##new_im.paste(im, (x_offset,0))
-        ##x_offset += im.size[0]
+    widths, heights = zip(*(i.size for i in images))
+    total_width = sum(widths)
+    max_height = max(heights)
+    new_im = Image.new('RGB', (total_width, max_height))
+    x_offset = 0
+    for im in images:
+        new_im.paste(im, (x_offset,0))
+        x_offset += im.size[0]
 
-    ##new_im.save('test.jpg')
+    new_im.save('test.jpg')
 
 
     
