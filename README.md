@@ -13,10 +13,13 @@ League Of Legends's meta (playstyle) changes as new patches are released. With t
 
 Assassin:
 Fighter:
+Initiator:
 Mage:
 Marksman:
-Support:
-Tank:
+Melee:
 Nuker:
 Pusher:
-Initiator:
+Ranged:
+Recommended:
+Support:
+Tank:
