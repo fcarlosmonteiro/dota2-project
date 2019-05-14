@@ -33,15 +33,15 @@ numheros = 5
 # Quantidade de heros presentes na base de dados
 qtheros = 121
 # Populacao Total
-populacao = 50
+populacao = 10
 # Probabilidade De Um Individuo Sofrer Mutacao
-probmut = 0.7
+probmut = 0.5
 # Probabilidade De Dois Individuos Cruzarem
-probcross = 0.3
+probcross = 0.5
 # Quantidade maxima de Geracoes
 numgeracoes = 100
 # Melhor resultado possivel da funcao de avaliacao
-resulfunc = 1000000
+resulfunc = 100.0
 
 #####################################
 
@@ -98,27 +98,27 @@ def evalOneMax(individual):
                 if data['id']==id_hero:
                     print(str(data['localized_name']))
                     attack = attack + data['base_attack_max']
-                    #print("atack ", attack)
+                   
                     speed = speed + data['move_speed']
                     #print("velocidade ", speed)
                     for r in data['roles']:
                         if r == "Initiator":
-                            initiator=10
+                            initiator=initiator+10
                         else:
-                            initiator=-5
-                    
+                            initiator=initiator-5
+        
         fitvalue=attack+speed+initiator
-        fitvalue = (float(fitvalue)-300)/(2075-300)
+        
+        fitvalue = (float(fitvalue)*100)/(2075)
         print ('team fitness = ' +str(fitvalue))
         return fitvalue,
-        #normalized = (x-min(x))/(max(x)-min(x))
 
 
     elif strategy == 'teamfight':
         print("----------------------------------")
         print(individual)
         fitvalue=0
-        carry=-1
+        carry=0
         strength=0
         atk_rate=0
         for id_hero in individual:
@@ -131,25 +131,45 @@ def evalOneMax(individual):
                     #print("velocidade ", atk_rate)
                     for r in data['roles']:
                         if r == "Carry":
-                            carry=10
+                            carry=carry+10
                         else:
-                            carry=0
+                            carry=carry-5
                     
         fitvalue=strength+atk_rate+carry
+        print(fitvalue)
+        fitvalue = (float(fitvalue)*100)/(210)
         print ('team fitness = ' +str(fitvalue))
         return fitvalue,
 
     elif strategy == 'pusher':
         print("----------------------------------")
         print(individual)
+        pusher=0
+        primary_attr=0
         fitvalue=0
+        agi=0
+        
         for id_hero in individual:
             for data in dataset:
                 if data['id']==id_hero:
-                    print(str(data['localized_name']) + ' agility = ' + str(data['base_agi']))
-                    fitvalue = fitvalue + data['base_agi']
-        
-        print ('time fitness = ' +str(fitvalue))
+                    print(str(data['localized_name']))
+                    agi=agi+data['base_agi']
+                    
+                    if data['primary_attr']=="str":
+                    	primary_attr=primary_attr+20
+                    else:
+                    	primary_attr=primary_attr+1
+                    
+                    for r in data['roles']:
+                    
+                        if r == "Pusher":
+                            pusher=pusher+10
+                        else:
+                            pusher= 0
+        fitvalue = agi+pusher+primary_attr
+        print (fitvalue)
+        fitvalue = (float(fitvalue)-1)/(210-1)
+        #print ('time fitness = ' +str(fitvalue))
         return fitvalue,
 
 #----------
