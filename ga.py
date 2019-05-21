@@ -33,7 +33,7 @@ numheros = 5
 # Quantidade de heros presentes na base de dados
 qtheros = 121
 # Populacao Total
-populacao = 10
+populacao = 20
 # Probabilidade De Um Individuo Sofrer Mutacao
 probmut = 0.5
 # Probabilidade De Dois Individuos Cruzarem
@@ -49,6 +49,26 @@ creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
+
+def checkTeam(individual):
+	team = False
+	sup = 0
+	hc = 0
+	if not team:
+		for id_hero in individual:
+			for data in dataset:
+				if data['id'] == id_hero:
+					for r in data['roles']:
+						if r == "Support":
+							sup = 1
+						elif r == "Carry":
+							hc = 1
+						elif sup == 1 and hc == 1:
+							team=True
+							return team
+	print (team)
+	return team 
+
 
 # Essa funcao tem como objetivo validar que os heros nao
 # se repitam dentro do conjunto
@@ -84,7 +104,7 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 # funcao de fitness sendo calculada apenas com agilidade
 def evalOneMax(individual):
     strategy = sys.argv[1]
-
+    checkTeam_out = checkTeam(individual)
     # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
     if strategy == 'gank':
         print("----------------------------------")
@@ -93,9 +113,13 @@ def evalOneMax(individual):
         initiator=0
         attack=0
         speed=0
+        team_composition=20
         for id_hero in individual:
             for data in dataset:
-                if data['id']==id_hero:
+            	if checkTeam_out == False:
+        			team_composition=0
+
+                elif data['id']==id_hero:
                     print(str(data['localized_name']))
                     attack = attack + data['base_attack_max']
                    
@@ -107,7 +131,7 @@ def evalOneMax(individual):
                         else:
                             initiator=initiator-5
         
-        fitvalue=attack+speed+initiator
+        fitvalue=(attack+speed+initiator)-team_composition
         
         fitvalue = (float(fitvalue)*100)/(2075)
         print ('team fitness = ' +str(fitvalue))
