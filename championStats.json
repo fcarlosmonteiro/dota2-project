@@ -5,8 +5,7 @@
       "name": "Aatrox",
       "title": "the Darkin Blade",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 580,
@@ -44,8 +43,7 @@
       "name": "Ahri",
       "title": "the Nine-Tailed Fox",
       "tags": [
-        "Mage",
-        "Assassin"
+        "Mid"
       ],
       "stats": {
         "hp": 526,
@@ -83,10 +81,11 @@
       "name": "Akali",
       "title": "the Fist of Shadow",
       "tags": [
-        "Assassin"
+        "Top",
+        "Mid"
       ],
       "stats": {
-        "hp": 593,
+        "hp": 800,
         "hpperlevel": 90,
         "mp": 200,
         "mpperlevel": 0,
@@ -121,7 +120,6 @@
       "name": "Alistar",
       "title": "the Minotaur",
       "tags": [
-        "Tank",
         "Support"
       ],
       "stats": {
@@ -160,8 +158,8 @@
       "name": "Amumu",
       "title": "the Sad Mummy",
       "tags": [
-        "Tank",
-        "Mage"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 613.12,
@@ -199,8 +197,7 @@
       "name": "Anivia",
       "title": "the Cryophoenix",
       "tags": [
-        "Mage",
-        "Support"
+        "Mid"
       ],
       "stats": {
         "hp": 480,
@@ -238,7 +235,8 @@
       "name": "Annie",
       "title": "the Dark Child",
       "tags": [
-        "Mage"
+        "Mid",
+        "Support"
       ],
       "stats": {
         "hp": 524,
@@ -315,8 +313,7 @@
       "name": "Aurelion Sol",
       "title": "The Star Forger",
       "tags": [
-        "Mage",
-        "Fighter"
+        "Mid"
       ],
       "stats": {
         "hp": 562,
@@ -354,8 +351,7 @@
       "name": "Azir",
       "title": "the Emperor of the Sands",
       "tags": [
-        "Mage",
-        "Marksman"
+        "Mid"
       ],
       "stats": {
         "hp": 552,
@@ -393,8 +389,7 @@
       "name": "Bard",
       "title": "the Wandering Caretaker",
       "tags": [
-        "Support",
-        "Mage"
+        "Support"
       ],
       "stats": {
         "hp": 535,
@@ -432,8 +427,7 @@
       "name": "Blitzcrank",
       "title": "the Great Steam Golem",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Support"
       ],
       "stats": {
         "hp": 582.6,
@@ -471,7 +465,8 @@
       "name": "Brand",
       "title": "the Burning Vengeance",
       "tags": [
-        "Mage"
+        "Mid",
+        "Support"
       ],
       "stats": {
         "hp": 519.68,
@@ -509,8 +504,7 @@
       "name": "Braum",
       "title": "the Heart of the Freljord",
       "tags": [
-        "Support",
-        "Tank"
+        "Support"
       ],
       "stats": {
         "hp": 576.16,
@@ -586,8 +580,8 @@
       "name": "Camille",
       "title": "the Steel Shadow",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top",
+        "Jungler"
       ],
       "stats": {
         "hp": 575.6,
@@ -625,7 +619,7 @@
       "name": "Cassiopeia",
       "title": "the Serpent's Embrace",
       "tags": [
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 537,
@@ -663,8 +657,8 @@
       "name": "Cho'Gath",
       "title": "the Terror of the Void",
       "tags": [
-        "Tank",
-        "Mage"
+        "Top",
+        "Jungler"
       ],
       "stats": {
         "hp": 574.4,
@@ -702,6 +696,7 @@
       "name": "Corki",
       "title": "the Daring Bombardier",
       "tags": [
+        "Mid",
         "Marksman"
       ],
       "stats": {
@@ -740,8 +735,7 @@
       "name": "Darius",
       "title": "the Hand of Noxus",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 582.24,
@@ -779,8 +773,8 @@
       "name": "Diana",
       "title": "Scorn of the Moon",
       "tags": [
-        "Fighter",
-        "Mage"
+        "Mid",
+        "Top"
       ],
       "stats": {
         "hp": 594,
@@ -856,8 +850,7 @@
       "name": "Dr. Mundo",
       "title": "the Madman of Zaun",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 582.52,
@@ -895,8 +888,8 @@
       "name": "Ekko",
       "title": "the Boy Who Shattered Time",
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Mid",
+        "Top"
       ],
       "stats": {
         "hp": 585,
@@ -934,8 +927,7 @@
       "name": "Elise",
       "title": "the Spider Queen",
       "tags": [
-        "Mage",
-        "Fighter"
+        "Jungler"
       ],
       "stats": {
         "hp": 534,
@@ -973,8 +965,7 @@
       "name": "Evelynn",
       "title": "Agony's Embrace",
       "tags": [
-        "Assassin",
-        "Mage"
+        "Jungler"
       ],
       "stats": {
         "hp": 572,
@@ -1013,7 +1004,7 @@
       "title": "the Prodigal Explorer",
       "tags": [
         "Marksman",
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 491,
@@ -1051,8 +1042,9 @@
       "name": "Fiddlesticks",
       "title": "the Harbinger of Doom",
       "tags": [
-        "Mage",
-        "Support"
+        "Support",
+        "Jungler",
+        "Mid"
       ],
       "stats": {
         "hp": 524.4,
@@ -1090,8 +1082,7 @@
       "name": "Fiora",
       "title": "the Grand Duelist",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Top"
       ],
       "stats": {
         "hp": 550,
@@ -1129,8 +1120,7 @@
       "name": "Fizz",
       "title": "the Tidal Trickster",
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Mid"
       ],
       "stats": {
         "hp": 570,
@@ -1168,8 +1158,8 @@
       "name": "Galio",
       "title": "the Colossus",
       "tags": [
-        "Tank",
-        "Mage"
+        "Support",
+        "Mid"
       ],
       "stats": {
         "hp": 562,
@@ -1207,7 +1197,8 @@
       "name": "Gangplank",
       "title": "the Saltwater Scourge",
       "tags": [
-        "Fighter"
+        "Top",
+        "Mid"
       ],
       "stats": {
         "hp": 540,
@@ -1245,8 +1236,7 @@
       "name": "Garen",
       "title": "The Might of Demacia",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 616.28,
@@ -1284,8 +1274,7 @@
       "name": "G2nar",
       "title": "the Missing Link",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 510,
@@ -1323,8 +1312,9 @@
       "name": "Gragas",
       "title": "the Rabble Rouser",
       "tags": [
-        "Fighter",
-        "Mage"
+        "Jungler",
+        "Mid",
+        "Top"
       ],
       "stats": {
         "hp": 583.52,
@@ -1362,7 +1352,7 @@
       "name": "Graves",
       "title": "the Outlaw",
       "tags": [
-        "Marksman"
+        "Jungler"
       ],
       "stats": {
         "hp": 551.12,
@@ -1400,8 +1390,8 @@
       "name": "Hecarim",
       "title": "the Shadow of War",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 580,
@@ -1439,8 +1429,8 @@
       "name": "Heimerdinger",
       "title": "the Revered Inventor",
       "tags": [
-        "Mage",
-        "Support"
+        "Top",
+        "Mid"
       ],
       "stats": {
         "hp": 488,
@@ -1478,8 +1468,7 @@
       "name": "Illaoi",
       "title": "the Kraken Priestess",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 585.6,
@@ -1517,8 +1506,8 @@
       "name": "Irelia",
       "title": "the Blade Dancer",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Top",
+        "Mid"
       ],
       "stats": {
         "hp": 550,
@@ -1556,8 +1545,7 @@
       "name": "Ivern",
       "title": "the Green Father",
       "tags": [
-        "Support",
-        "Mage"
+        "Jungler"
       ],
       "stats": {
         "hp": 585,
@@ -1595,8 +1583,7 @@
       "name": "Janna",
       "title": "the Storm's Fury",
       "tags": [
-        "Support",
-        "Mage"
+        "Support"
       ],
       "stats": {
         "hp": 500,
@@ -1634,8 +1621,8 @@
       "name": "Jarvan IV",
       "title": "the Exemplar of Demacia",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 571.2,
@@ -1673,8 +1660,8 @@
       "name": "Jax",
       "title": "Grandmaster at Arms",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Top",
+        "Jungler"
       ],
       "stats": {
         "hp": 592.8,
@@ -1712,8 +1699,8 @@
       "name": "Jayce",
       "title": "the Defender of Tomorrow",
       "tags": [
-        "Fighter",
-        "Marksman"
+        "Top",
+        "Mid"
       ],
       "stats": {
         "hp": 576,
@@ -1751,8 +1738,7 @@
       "name": "Jhin",
       "title": "the Virtuoso",
       "tags": [
-        "Marksman",
-        "Assassin"
+        "Marksman"
       ],
       "stats": {
         "hp": 556,
@@ -1904,8 +1890,9 @@
       "name": "Karma",
       "title": "the Enlightened One",
       "tags": [
-        "Mage",
-        "Support"
+        "Support",
+        "Mid",
+        "Top"
       ],
       "stats": {
         "hp": 534,
@@ -1943,7 +1930,8 @@
       "name": "Karthus",
       "title": "the Deathsinger",
       "tags": [
-        "Mage"
+        "Jungler",
+        "Mid"
       ],
       "stats": {
         "hp": 528,
@@ -1981,8 +1969,8 @@
       "name": "Kassadin",
       "title": "the Void Walker",
       "tags": [
-        "Assassin",
-        "Mage"
+        "Mid",
+        "Top"
       ],
       "stats": {
         "hp": 576,
@@ -2020,8 +2008,7 @@
       "name": "Katarina",
       "title": "the Sinister Blade",
       "tags": [
-        "Assassin",
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 602,
@@ -2059,8 +2046,8 @@
       "name": "Kayle",
       "title": "The Judicator",
       "tags": [
-        "Fighter",
-        "Support"
+        "Top",
+        "Mid"
       ],
       "stats": {
         "hp": 586,
@@ -2098,8 +2085,8 @@
       "name": "Kayn",
       "title": "the Shadow Reaper",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Jungler",
+        "Mid"
       ],
       "stats": {
         "hp": 585,
@@ -2137,8 +2124,7 @@
       "name": "Kennen",
       "title": "the Heart of the Tempest",
       "tags": [
-        "Mage",
-        "Marksman"
+        "Top"
       ],
       "stats": {
         "hp": 541,
@@ -2176,8 +2162,8 @@
       "name": "Kha'Zix",
       "title": "the Voidreaver",
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 572.8,
@@ -2215,7 +2201,7 @@
       "name": "Kindred",
       "title": "The Eternal Hunters",
       "tags": [
-        "Marksman"
+        "Jungler"
       ],
       "stats": {
         "hp": 540,
@@ -2253,8 +2239,7 @@
       "name": "Kled",
       "title": "the Cantankerous Cavalier",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 340,
@@ -2292,8 +2277,7 @@
       "name": "Kog'Maw",
       "title": "the Mouth of the Abyss",
       "tags": [
-        "Marksman",
-        "Mage"
+        "Marksman"
       ],
       "stats": {
         "hp": 534,
@@ -2331,8 +2315,7 @@
       "name": "LeBlanc",
       "title": "the Deceiver",
       "tags": [
-        "Assassin",
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 528,
@@ -2370,8 +2353,7 @@
       "name": "Lee Sin",
       "title": "the Blind Monk",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Jungler"
       ],
       "stats": {
         "hp": 570.8,
@@ -2409,7 +2391,6 @@
       "name": "Leona",
       "title": "the Radiant Dawn",
       "tags": [
-        "Tank",
         "Support"
       ],
       "stats": {
@@ -2448,7 +2429,7 @@
       "name": "Lissandra",
       "title": "the Ice Witch",
       "tags": [
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 518,
@@ -2524,8 +2505,7 @@
       "name": "Lulu",
       "title": "the Fae Sorceress",
       "tags": [
-        "Support",
-        "Mage"
+        "Support"
       ],
       "stats": {
         "hp": 525,
@@ -2563,8 +2543,7 @@
       "name": "Lux",
       "title": "the Lady of Luminosity",
       "tags": [
-        "Mage",
-        "Support"
+        "Mid"
       ],
       "stats": {
         "hp": 490,
@@ -2602,8 +2581,7 @@
       "name": "Malphite",
       "title": "Shard of the Monolith",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Top"
       ],
       "stats": {
         "hp": 574.2,
@@ -2641,8 +2619,8 @@
       "name": "Malzahar",
       "title": "the Prophet of the Void",
       "tags": [
-        "Mage",
-        "Assassin"
+        "Mid",
+        "Support"
       ],
       "stats": {
         "hp": 537,
@@ -2680,8 +2658,7 @@
       "name": "Maokai",
       "title": "the Twisted Treant",
       "tags": [
-        "Tank",
-        "Mage"
+        "Top"
       ],
       "stats": {
         "hp": 565,
@@ -2719,8 +2696,8 @@
       "name": "Master Yi",
       "title": "the Wuju Bladesman",
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 598.56,
@@ -2796,8 +2773,7 @@
       "name": "Wukong",
       "title": "the Monkey King",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 577.8,
@@ -2835,7 +2811,7 @@
       "name": "Mordekaiser",
       "title": "the Iron Revenant",
       "tags": [
-        "Fighter"
+        "Mid"
       ],
       "stats": {
         "hp": 530,
@@ -2873,8 +2849,8 @@
       "name": "Morgana",
       "title": "Fallen Angel",
       "tags": [
-        "Mage",
-        "Support"
+        "Support",
+        "Mid"
       ],
       "stats": {
         "hp": 559.48,
@@ -2912,8 +2888,7 @@
       "name": "Nami",
       "title": "the Tidecaller",
       "tags": [
-        "Support",
-        "Mage"
+        "Support"
       ],
       "stats": {
         "hp": 489.32,
@@ -2951,8 +2926,7 @@
       "name": "Nasus",
       "title": "the Curator of the Sands",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 561.2,
@@ -2990,8 +2964,8 @@
       "name": "Nautilus",
       "title": "the Titan of the Depths",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Support",
+        "Top"
       ],
       "stats": {
         "hp": 576.48,
@@ -3029,8 +3003,8 @@
       "name": "Nidalee",
       "title": "the Bestial Huntress",
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Jungler",
+        "Mid"
       ],
       "stats": {
         "hp": 545,
@@ -3068,8 +3042,7 @@
       "name": "Nocturne",
       "title": "the Eternal Nightmare",
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Jungler"
       ],
       "stats": {
         "hp": 582.8,
@@ -3107,8 +3080,8 @@
       "name": "Nunu",
       "title": "the Yeti Rider",
       "tags": [
-        "Support",
-        "Fighter"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 590,
@@ -3146,8 +3119,8 @@
       "name": "Olaf",
       "title": "the Berserker",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 597.24,
@@ -3185,8 +3158,7 @@
       "name": "Orianna",
       "title": "the Lady of Clockwork",
       "tags": [
-        "Mage",
-        "Support"
+        "Mid"
       ],
       "stats": {
         "hp": 530,
@@ -3224,8 +3196,7 @@
       "name": "Ornn",
       "title": "The Fire below the Mountain",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Top"
       ],
       "stats": {
         "hp": 565.64,
@@ -3263,8 +3234,8 @@
       "name": "Pantheon",
       "title": "the Artisan of War",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Top",
+        "Jungler"
       ],
       "stats": {
         "hp": 579.16,
@@ -3302,8 +3273,8 @@
       "name": "Poppy",
       "title": "Keeper of the Hammer",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Top",
+        "Support"
       ],
       "stats": {
         "hp": 540,
@@ -3341,8 +3312,7 @@
       "name": "Pyke",
       "title": "the Bloodharbor Ripper",
       "tags": [
-        "Support",
-        "Assassin"
+        "Support"
       ],
       "stats": {
         "hp": 600,
@@ -3381,7 +3351,7 @@
       "title": "Demacia's Wings",
       "tags": [
         "Marksman",
-        "Fighter"
+        "Top"
       ],
       "stats": {
         "hp": 532.8,
@@ -3457,8 +3427,8 @@
       "name": "Rammus",
       "title": "the Armordillo",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 564.48,
@@ -3496,7 +3466,7 @@
       "name": "Rek'Sai",
       "title": "the Void Burrower",
       "tags": [
-        "Fighter"
+        "Jungler"
       ],
       "stats": {
         "hp": 570,
@@ -3534,8 +3504,7 @@
       "name": "Renekton",
       "title": "the Butcher of the Sands",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 572.16,
@@ -3573,8 +3542,8 @@
       "name": "Rengar",
       "title": "the Pridestalker",
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 585,
@@ -3612,8 +3581,7 @@
       "name": "Riven",
       "title": "the Exile",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Top"
       ],
       "stats": {
         "hp": 558.48,
@@ -3651,8 +3619,8 @@
       "name": "Rumble",
       "title": "the Mechanized Menace",
       "tags": [
-        "Fighter",
-        "Mage"
+        "Top",
+        "Jungle"
       ],
       "stats": {
         "hp": 589,
@@ -3690,8 +3658,8 @@
       "name": "Ryze",
       "title": "the Rune Mage",
       "tags": [
-        "Mage",
-        "Fighter"
+        "Mid",
+        "Top"
       ],
       "stats": {
         "hp": 570.48,
@@ -3729,8 +3697,7 @@
       "name": "Sejuani",
       "title": "Fury of the North",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Jungler"
       ],
       "stats": {
         "hp": 560,
@@ -3768,7 +3735,7 @@
       "name": "Shaco",
       "title": "the Demon Jester",
       "tags": [
-        "Assassin"
+        "Jungler"
       ],
       "stats": {
         "hp": 587,
@@ -3806,7 +3773,7 @@
       "name": "Shen",
       "title": "the Eye of Twilight",
       "tags": [
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 540,
@@ -3844,8 +3811,7 @@
       "name": "Shyvana",
       "title": "the Half-Dragon",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Jungler"
       ],
       "stats": {
         "hp": 595,
@@ -3883,8 +3849,7 @@
       "name": "Singed",
       "title": "the Mad Chemist",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Top"
       ],
       "stats": {
         "hp": 580,
@@ -3922,8 +3887,7 @@
       "name": "Sion",
       "title": "The Undead Juggernaut",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Top"
       ],
       "stats": {
         "hp": 542.64,
@@ -3999,8 +3963,7 @@
       "name": "Skarner",
       "title": "the Crystal Vanguard",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Jungler"
       ],
       "stats": {
         "hp": 601.28,
@@ -4038,8 +4001,7 @@
       "name": "Sona",
       "title": "Maven of the Strings",
       "tags": [
-        "Support",
-        "Mage"
+        "Support"
       ],
       "stats": {
         "hp": 482.36,
@@ -4077,8 +4039,7 @@
       "name": "Soraka",
       "title": "the Starchild",
       "tags": [
-        "Support",
-        "Mage"
+        "Support"
       ],
       "stats": {
         "hp": 529.04,
@@ -4116,8 +4077,8 @@
       "name": "Swain",
       "title": "the Noxian Grand General",
       "tags": [
-        "Mage",
-        "Fighter"
+        "Top",
+        "Mid"
       ],
       "stats": {
         "hp": 525,
@@ -4155,8 +4116,7 @@
       "name": "Syndra",
       "title": "the Dark Sovereign",
       "tags": [
-        "Mage",
-        "Support"
+        "Mid"
       ],
       "stats": {
         "hp": 523,
@@ -4194,8 +4154,7 @@
       "name": "Tahm Kench",
       "title": "the River King",
       "tags": [
-        "Support",
-        "Tank"
+        "Support"
       ],
       "stats": {
         "hp": 610,
@@ -4233,8 +4192,8 @@
       "name": "Taliyah",
       "title": "the Stoneweaver",
       "tags": [
-        "Mage",
-        "Support"
+        "Jungler",
+        "Mid"
       ],
       "stats": {
         "hp": 532,
@@ -4272,8 +4231,7 @@
       "name": "Talon",
       "title": "the Blade's Shadow",
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Mid"
       ],
       "stats": {
         "hp": 588,
@@ -4311,8 +4269,7 @@
       "name": "Taric",
       "title": "the Shield of Valoran",
       "tags": [
-        "Support",
-        "Fighter"
+        "Support"
       ],
       "stats": {
         "hp": 575,
@@ -4350,8 +4307,8 @@
       "name": "Teemo",
       "title": "the Swift Scout",
       "tags": [
-        "Marksman",
-        "Assassin"
+        "Top",
+        "Mid"
       ],
       "stats": {
         "hp": 528,
@@ -4389,8 +4346,7 @@
       "name": "Thresh",
       "title": "the Chain Warden",
       "tags": [
-        "Support",
-        "Fighter"
+        "Support"
       ],
       "stats": {
         "hp": 560.52,
@@ -4428,8 +4384,7 @@
       "name": "Tristana",
       "title": "the Yordle Gunner",
       "tags": [
-        "Marksman",
-        "Assassin"
+        "Marksman"
       ],
       "stats": {
         "hp": 559,
@@ -4467,8 +4422,8 @@
       "name": "Trundle",
       "title": "the Troll King",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Jungler",
+        "Top"
       ],
       "stats": {
         "hp": 616.28,
@@ -4506,8 +4461,7 @@
       "name": "Tryndamere",
       "title": "the Barbarian King",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Top"
       ],
       "stats": {
         "hp": 625.64,
@@ -4545,7 +4499,7 @@
       "name": "Twisted Fate",
       "title": "the Card Master",
       "tags": [
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 534,
@@ -4583,8 +4537,7 @@
       "name": "Twitch",
       "title": "the Plague Rat",
       "tags": [
-        "Marksman",
-        "Assassin"
+        "Marksman"
       ],
       "stats": {
         "hp": 542,
@@ -4622,8 +4575,7 @@
       "name": "Udyr",
       "title": "the Spirit Walker",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Jungler"
       ],
       "stats": {
         "hp": 593.32,
@@ -4661,8 +4613,8 @@
       "name": "Urgot",
       "title": "the Dreadnought",
       "tags": [
-        "Fighter",
-        "Marksman"
+        "Mid",
+        "Top"
       ],
       "stats": {
         "hp": 585,
@@ -4700,8 +4652,7 @@
       "name": "Varus",
       "title": "the Arrow of Retribution",
       "tags": [
-        "Marksman",
-        "Mage"
+        "Marksman"
       ],
       "stats": {
         "hp": 549,
@@ -4739,8 +4690,7 @@
       "name": "Vayne",
       "title": "the Night Hunter",
       "tags": [
-        "Marksman",
-        "Assassin"
+        "Marksman"
       ],
       "stats": {
         "hp": 515,
@@ -4778,7 +4728,7 @@
       "name": "Veigar",
       "title": "the Tiny Master of Evil",
       "tags": [
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 505,
@@ -4816,7 +4766,7 @@
       "name": "Vel'Koz",
       "title": "the Eye of the Void",
       "tags": [
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 520,
@@ -4854,8 +4804,7 @@
       "name": "Vi",
       "title": "the Piltover Enforcer",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Jungler"
       ],
       "stats": {
         "hp": 585,
@@ -4893,7 +4842,7 @@
       "name": "Viktor",
       "title": "the Machine Herald",
       "tags": [
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 528.04,
@@ -4931,8 +4880,8 @@
       "name": "Vladimir",
       "title": "the Crimson Reaper",
       "tags": [
-        "Mage",
-        "Tank"
+        "Top",
+        "Mid"
       ],
       "stats": {
         "hp": 537,
@@ -4970,8 +4919,8 @@
       "name": "Volibear",
       "title": "the Thunder's Roar",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top",
+        "Jungler"
       ],
       "stats": {
         "hp": 584.48,
@@ -5009,8 +4958,7 @@
       "name": "Warwick",
       "title": "the Uncaged Wrath of Zaun",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Jungler"
       ],
       "stats": {
         "hp": 550,
@@ -5086,8 +5034,7 @@
       "name": "Xerath",
       "title": "the Magus Ascendant",
       "tags": [
-        "Mage",
-        "Assassin"
+        "Mid"
       ],
       "stats": {
         "hp": 526,
@@ -5125,8 +5072,7 @@
       "name": "Xin Zhao",
       "title": "the Seneschal of Demacia",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Jungler"
       ],
       "stats": {
         "hp": 570,
@@ -5164,8 +5110,8 @@
       "name": "Yasuo",
       "title": "the Unforgiven",
       "tags": [
-        "Fighter",
-        "Assassin"
+        "Mid",
+        "Top"
       ],
       "stats": {
         "hp": 523,
@@ -5203,8 +5149,7 @@
       "name": "Yorick",
       "title": "Shepherd of Souls",
       "tags": [
-        "Fighter",
-        "Tank"
+        "Top"
       ],
       "stats": {
         "hp": 580,
@@ -5242,8 +5187,7 @@
       "name": "Zac",
       "title": "the Secret Weapon",
       "tags": [
-        "Tank",
-        "Fighter"
+        "Jungler"
       ],
       "stats": {
         "hp": 615,
@@ -5281,8 +5225,7 @@
       "name": "Zed",
       "title": "the Master of Shadows",
       "tags": [
-        "Assassin",
-        "Fighter"
+        "Mid"
       ],
       "stats": {
         "hp": 584,
@@ -5320,7 +5263,7 @@
       "name": "Ziggs",
       "title": "the Hexplosives Expert",
       "tags": [
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 536,
@@ -5359,7 +5302,7 @@
       "title": "the Chronokeeper",
       "tags": [
         "Support",
-        "Mage"
+        "Mid"
       ],
       "stats": {
         "hp": 504,
@@ -5397,8 +5340,7 @@
       "name": "Zoe",
       "title": "the Aspect of Twilight",
       "tags": [
-        "Mage",
-        "Support"
+        "Mid"
       ],
       "stats": {
         "hp": 560,
@@ -5436,7 +5378,7 @@
       "name": "Zyra",
       "title": "Rise of the Thorns",
       "tags": [
-        "Mage",
+        "Mid",
         "Support"
       ],
       "stats": {
