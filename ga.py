@@ -138,6 +138,8 @@ def evalOneMax(individual):
             
             fitvalue = (float(fitvalue)*100)/(2075)
             print ('team fitness = ' +str(fitvalue))
+        elif game == 'lol':
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         return fitvalue,
 
 
@@ -168,6 +170,8 @@ def evalOneMax(individual):
             print(fitvalue)
             fitvalue = (float(fitvalue)*100)/(210)
             print ('team fitness = ' +str(fitvalue))
+        elif game == 'lol':
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         return fitvalue,
 
     elif strategy == 'pusher':
@@ -200,6 +204,8 @@ def evalOneMax(individual):
             print (fitvalue)
             fitvalue = (float(fitvalue)-1)/(210-1)
             #print ('time fitness = ' +str(fitvalue))
+        elif game == 'lol':
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         return fitvalue,
 
 #----------
