@@ -8,6 +8,10 @@ The project requires a couple of python2.7 packages. Install them using:
 ```bash
 pip install -r requirements.txt
 ```
+
+## Run informations
+To execute your project, run `\.ga.py <game> <strategy>`
+
 ## Results <a name="results"></a>
 
 **Gank team**
