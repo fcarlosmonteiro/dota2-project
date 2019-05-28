@@ -33,15 +33,15 @@ numheros = 5
 # Quantidade de heros presentes na base de dados
 qtheros = 141
 # Populacao Total
-populacao = 50
+populacao = 20
 # Probabilidade De Um Individuo Sofrer Mutacao
-probmut = 0.7
+probmut = 0.5
 # Probabilidade De Dois Individuos Cruzarem
-probcross = 0.3
+probcross = 0.5
 # Quantidade maxima de Geracoes
 numgeracoes = 100
 # Melhor resultado possivel da funcao de avaliacao
-resulfunc = 1000000
+resulfunc = 100.0
 
 #####################################
 
@@ -49,6 +49,26 @@ creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
+
+def checkTeam(individual):
+	team = False
+	sup = 0
+	hc = 0
+	if not team:
+		for id_hero in individual:
+			for data in dataset:
+				if data['id'] == id_hero:
+					for r in data['roles']:
+						if r == "Support":
+							sup = 1
+						elif r == "Carry":
+							hc = 1
+						elif sup == 1 and hc == 1:
+							team=True
+							return team
+	print (team)
+	return team 
+
 
 # Essa funcao tem como objetivo validar que os heros nao
 # se repitam dentro do conjunto
@@ -81,10 +101,11 @@ toolbox.register("individual", tools.initIterate, creator.Individual,
 # define the population to be a list of individuals
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
-# funcao de fitness sendo calculada apenas com agilidade
+# funcao de fitness
 def evalOneMax(individual):
-    strategy = sys.argv[1]
-
+    game = sys.argv[1]
+    strategy = sys.argv[2]
+    checkTeam_out = checkTeam(individual)
     # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
     if strategy == 'gank':
         print("----------------------------------")
@@ -93,62 +114,102 @@ def evalOneMax(individual):
         initiator=0
         attack=0
         speed=0
-        for id_hero in individual:
-            for data in dataset:
-                if data['key']==id_hero:
-                    print(str(data['name']))
-                    attack = attack + data['stats']['attackdamage']
-                    #print("atack ", attack)
-                    speed = speed + data['stats']['movespeed']
-                    #print("velocidade ", speed)
-                    for r in data['tags']:
-                        if r == "Fighter":
-                            initiator=10
-                        else:
-                            initiator=-5
-                    
-        fitvalue=attack+speed+initiator
-        fitvalue = (float(fitvalue)-300)/(2075-300)
-        print ('team fitness = ' +str(fitvalue))
-        return fitvalue,
-        #normalized = (x-min(x))/(max(x)-min(x))
+        team_composition=20
+        if game == 'dota':
+            for id_hero in individual:
+                for data in dataset:
+                    if checkTeam_out == False:
+                        team_composition=0
 
+                    elif data['id']==id_hero:
+                        print(str(data['localized_name']))
+                        attack = attack + data['base_attack_max']
+                    
+                        speed = speed + data['move_speed']
+                        #print("velocidade ", speed)
+                        for r in data['roles']:
+                            if r == "Initiator":
+                                initiator=initiator+10
+                            else:
+                                initiator=initiator-5
+            
+            fitvalue=(attack+speed+initiator)-team_composition
+            
+            fitvalue = (float(fitvalue)*100)/(2075)
+            print ('team fitness = ' +str(fitvalue))
+        elif game == 'lol':
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        else:
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        return fitvalue,
 
     elif strategy == 'teamfight':
         print("----------------------------------")
         print(individual)
         fitvalue=0
-        carry=-1
+        carry=0
         strength=0
         atk_rate=0
-        for id_hero in individual:   
-            for data in dataset:   
-                if int(data['key'])==id_hero:                    
-                    strength = strength + data['stats']['attackdamage']
-                    #print("strength ", strength)
-                    atk_rate = atk_rate + data['stats']['attackspeedperlevel']
-                    #print("velocidade ", atk_rate)
-                    for r in data['tags']:
-                        if r == "Fighter":
-                            carry=10
-                        else:
-                            carry=0
-                    
-        fitvalue=strength+atk_rate+carry
-        print ('team fitness = ' +str(fitvalue))
+
+        if game == 'dota':
+            for id_hero in individual:
+                for data in dataset:
+                    if data['id']==id_hero:
+                        print(str(data['localized_name']))
+                        strength = strength + data['base_str']
+                        #print("strength ", strength)
+                        atk_rate = atk_rate + data['attack_rate']
+                        #print("velocidade ", atk_rate)
+                        for r in data['roles']:
+                            if r == "Carry":
+                                carry=carry+10
+                            else:
+                                carry=carry-5
+                        
+            fitvalue=strength+atk_rate+carry
+            print(fitvalue)
+            fitvalue = (float(fitvalue)*100)/(210)
+            print ('team fitness = ' +str(fitvalue))
+        elif game == 'lol':
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        else:
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         return fitvalue,
 
     elif strategy == 'pusher':
         print("----------------------------------")
         print(individual)
+        pusher=0
+        primary_attr=0
         fitvalue=0
-        for id_hero in individual:
-            for data in dataset:
-                if data['key']==id_hero:
-                    print(str(data['name']) + ' agility = ' + str(data['base_agi']))
-                    fitvalue = fitvalue + data['stats']['base_agi']
-        
-        print ('time fitness = ' +str(fitvalue))
+        agi=0
+        team_composition = 20
+        if game == 'dota':
+            for id_hero in individual:
+                for data in dataset:
+                    if data['id']==id_hero:
+                        print(str(data['localized_name']))
+                        agi=agi+data['base_agi']
+                        
+                        if data['primary_attr']=="str":
+                            primary_attr=primary_attr+20
+                        else:
+                            primary_attr=primary_attr+1
+                        
+                        for r in data['roles']:
+                        
+                            if r == "Pusher":
+                                pusher=pusher+10
+                            else:
+                                pusher= 0
+            fitvalue = agi+pusher+primary_attr
+            print (fitvalue)
+            fitvalue = (float(fitvalue)-1)/(210-1)
+            #print ('time fitness = ' +str(fitvalue))
+        elif game == 'lol':
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        else:
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         return fitvalue,
 
 #----------

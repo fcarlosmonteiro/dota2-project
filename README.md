@@ -8,6 +8,7 @@ The project requires a couple of python2.7 packages. Install them using:
 ```bash
 pip install -r requirements.txt
 ```
+<<<<<<< HEAD
 ## Champion Tags
 League Of Legends's meta (playstyle) changes as new patches are released. With that, champions tags keep changing as their skills and stats changes. To keep the data updated, is necessary to add new tags or edit the older ones to fit the champions in their exact role.
 
@@ -23,3 +24,25 @@ Ranged:
 Recommended:
 Support:
 Tank:
+=======
+
+## Run informations
+To execute your project, run `\.ga.py <game> <strategy>`
+
+## Results <a name="results"></a>
+
+**Gank team**
+
+![myimage1](https://github.com/fcarlosmonteiro/dota2-project/blob/master/Figure_1.png)
+![myimage2](https://github.com/fcarlosmonteiro/dota2-project/blob/master/test1.jpg)
+
+**Teamfigth team**
+
+![myimage3](https://github.com/fcarlosmonteiro/dota2-project/blob/master/Figure_2.png)
+![myimage4](https://github.com/fcarlosmonteiro/dota2-project/blob/master/test2.jpg)
+
+**Pusher team**
+
+![myimage5](https://github.com/fcarlosmonteiro/dota2-project/blob/master/Figure_3.png)
+![myimage6](https://github.com/fcarlosmonteiro/dota2-project/blob/master/test3.jpg)
+>>>>>>> 55962aa9a61b23696140473a56ba3cd30e870e25
