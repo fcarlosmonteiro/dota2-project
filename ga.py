@@ -101,7 +101,7 @@ toolbox.register("individual", tools.initIterate, creator.Individual,
 # define the population to be a list of individuals
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
-# funcao de fitness sendo calculada apenas com agilidade
+# funcao de fitness
 def evalOneMax(individual):
     strategy = sys.argv[1]
     checkTeam_out = checkTeam(individual)
@@ -116,15 +116,14 @@ def evalOneMax(individual):
         team_composition=20
         for id_hero in individual:
             for data in dataset:
-            	if checkTeam_out == False:
+            	if checkTeam_out:
         			team_composition=0
 
-                elif data['id']==id_hero:
+                if data['id']==id_hero:
                     print(str(data['localized_name']))
                     attack = attack + data['base_attack_max']
                    
                     speed = speed + data['move_speed']
-                    #print("velocidade ", speed)
                     for r in data['roles']:
                         if r == "Initiator":
                             initiator=initiator+10
@@ -145,21 +144,24 @@ def evalOneMax(individual):
         carry=0
         strength=0
         atk_rate=0
+        team_composition=20
+
         for id_hero in individual:
             for data in dataset:
+            	if checkTeam_out:
+            		team_composition=0
+
                 if data['id']==id_hero:
                     print(str(data['localized_name']))
                     strength = strength + data['base_str']
-                    #print("strength ", strength)
                     atk_rate = atk_rate + data['attack_rate']
-                    #print("velocidade ", atk_rate)
                     for r in data['roles']:
                         if r == "Carry":
                             carry=carry+10
                         else:
                             carry=carry-5
                     
-        fitvalue=strength+atk_rate+carry
+        fitvalue=(strength+atk_rate+carry)-team_composition
         print(fitvalue)
         fitvalue = (float(fitvalue)*100)/(210)
         print ('team fitness = ' +str(fitvalue))
@@ -172,9 +174,12 @@ def evalOneMax(individual):
         primary_attr=0
         fitvalue=0
         agi=0
+        team_composition = 20
         
         for id_hero in individual:
             for data in dataset:
+            	if checkTeam_out:
+            		team_composition=0
                 if data['id']==id_hero:
                     print(str(data['localized_name']))
                     agi=agi+data['base_agi']
@@ -190,10 +195,9 @@ def evalOneMax(individual):
                             pusher=pusher+10
                         else:
                             pusher= 0
-        fitvalue = agi+pusher+primary_attr
+        fitvalue = (agi+pusher+primary_attr)-team_composition
         print (fitvalue)
         fitvalue = (float(fitvalue)-1)/(210-1)
-        #print ('time fitness = ' +str(fitvalue))
         return fitvalue,
 
 #----------
