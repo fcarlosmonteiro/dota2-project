@@ -1,15 +1,18 @@
 import json
 
-json_file='heroStats.json'
-json_data=open(json_file)
-dataset = json.load(json_data)
+#json_file='heroStats.json'
+#json_data=open(json_file)
+#dataset = json.load(json_data)
 
-base =-100000
-for data in dataset:
-	if data['base_str'] > base:
-		base=data['base_str']
-		print(base)
-print(base*5)
+json_file2='counters.json'
+json_data2=open(json_file2)
+dataset2 = json.load(json_data2)
+
+print(dataset2['batrider'])
+
+for counters in dataset2['batrider']:
+	dado = co.get("informacao2")[part]
+
 
 #para 5 heros
 #atk min 55 e max 350

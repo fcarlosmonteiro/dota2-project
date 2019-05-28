@@ -50,6 +50,14 @@ creator.create("Individual", list, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
 
+def getHeroName(individual):
+    namesIndividual=[]
+    for id_hero in individual:
+        for data in dataset:
+            if data['id']==id_hero:
+                namesIndividual.append(str(data['localized_name']))
+    return namesIndividual
+
 def checkTeam(individual):
 	team = False
 	sup = 0
