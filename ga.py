@@ -18,6 +18,9 @@ json_file='heroStats.json'
 json_data=open(json_file)
 dataset = json.load(json_data)
 
+json_file2='counters.json'
+json_data2=open(json_file2)
+dataset2 = json.load(json_data2)
 
 
 xglobal = []
@@ -55,8 +58,17 @@ def getHeroName(individual):
     for id_hero in individual:
         for data in dataset:
             if data['id']==id_hero:
-                namesIndividual.append(str(data['localized_name']))
+                namesIndividual.append(str(data['localized_name']).lower())
     return namesIndividual
+
+def checkCounters(individual):
+    namesIndividual = getHeroName(individual)
+    totalCounters=0
+    for n in namesIndividual:
+        for counters in dataset2[n]:
+        	if dataset2[n][counters] > 0:
+        		totalCounters += dataset2[n][counters] 
+    return totalCounters
 
 def checkTeam(individual):
 	team = False
@@ -113,6 +125,7 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 def evalOneMax(individual):
     game = sys.argv[1]
     strategy = sys.argv[2]
+    checkCounters(individual)
     checkTeam_out = checkTeam(individual)
     # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
     if strategy == 'gank':
@@ -130,7 +143,7 @@ def evalOneMax(individual):
                         team_composition=0
 
                     elif data['id']==id_hero:
-                        print(str(data['localized_name']))
+                        print(str(data['localized_name'].lower()))
                         attack = attack + data['base_attack_max']
                     
                         speed = speed + data['move_speed']
