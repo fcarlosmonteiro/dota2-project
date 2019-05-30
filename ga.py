@@ -1,10 +1,12 @@
 import sys
+import os
 import json
 import random
 import requests
 import numpy as np
 import matplotlib.pyplot as plt
 
+from operator import attrgetter
 from random import randint
 from deap import base
 from deap import creator
@@ -47,7 +49,6 @@ numgeracoes = 100
 resulfunc = 100.0
 
 #####################################
-
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
 
@@ -121,11 +122,28 @@ toolbox.register("individual", tools.initIterate, creator.Individual,
 # define the population to be a list of individuals
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
+def improveTournament(individuals, k, tournsize, fit_attr="fitness"):
+    for i in xrange(k):
+    	chosen = []
+    	chosenTemp=[]
+    	totalCountersTemp=9999999
+        aspirants = tools.selRandom(individuals, tournsize)
+        
+        for aspira in aspirants:
+     #   	print ("--->",aspira)
+        	totalCounters = checkCounters(aspira)
+        	#os._exit(1)
+        	if totalCounters <= totalCountersTemp:
+        		chosenTemp = aspira
+        		totalCountersTemp=totalCounters
+		chosen.append(chosenTemp)
+	#print(chosen)
+    return chosen
+
 # funcao de fitness
-def evalOneMax(individual):
+def fitnessFunction(individual):
     game = sys.argv[1]
     strategy = sys.argv[2]
-    checkCounters(individual)
     checkTeam_out = checkTeam(individual)
     # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
     if strategy == 'gank':
@@ -233,11 +251,9 @@ def evalOneMax(individual):
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         return fitvalue,
 
-#----------
-# Operator registration
-#----------
+
 # register the goal / fitness function
-toolbox.register("evaluate", evalOneMax)
+toolbox.register("evaluate", fitnessFunction)
 
 # register the crossover operator
 toolbox.register("mate", tools.cxTwoPoint)
@@ -246,11 +262,9 @@ toolbox.register("mate", tools.cxTwoPoint)
 # flip each attribute/gene of 0.05
 toolbox.register("mutate", tools.mutShuffleIndexes, indpb=0.05)
 
-# operator for selecting individuals for breeding the next
-# generation: each individual of the current generation
-# is replaced by the 'fittest' (best) of three individuals
-# drawn randomly from the current generation.
+
 toolbox.register("select", tools.selTournament, tournsize=3)
+#change the parameter to improveTournament or tools.selTournament
 
 #----------
 
@@ -282,7 +296,7 @@ def main():
 
     # Variable keeping track of the number of generations
     g = 0
-    
+    totalCounters=0
     # Begin the evolution
     while max(fits) < resulfunc and g < numgeracoes:
         # A new generation
