@@ -44,7 +44,11 @@ probmut = 0.7
 # Probabilidade De Dois Individuos Cruzarem
 probcross = 0.7
 # Quantidade maxima de Geracoes
+<<<<<<< HEAD
 numgeracoes = 500
+=======
+numgeracoes = 1000
+>>>>>>> 223bb6bf0cec8e1ea81ccda50cf31a2c351957a8
 # Melhor resultado possivel da funcao de avaliacao
 resulfunc = 210.0
 
@@ -152,19 +156,34 @@ def fitnessFunction(individual):
         initiator=0
         attack=0
         speed=0
+<<<<<<< HEAD
+=======
+        bonusFormat=0
+   
+>>>>>>> 223bb6bf0cec8e1ea81ccda50cf31a2c351957a8
         if game == 'dota':
             for id_hero in individual:
                 for data in dataset:
                     if checkTeam_out == False:
+<<<<<<< HEAD
                     	fitvalue=0
+=======
+                        fitvalue=0
+>>>>>>> 223bb6bf0cec8e1ea81ccda50cf31a2c351957a8
                         return fitvalue,
 
                     elif data['id']==id_hero:
                         
                         print(str(data['localized_name'].lower()))
+<<<<<<< HEAD
                         
                         attack = attack + data['base_attack_max']
                         speed = speed + data['move_speed']
+=======
+                        attack = attack + data['base_attack_max']                    
+                        speed = speed + data['move_speed']
+                        bonusFormat=50
+>>>>>>> 223bb6bf0cec8e1ea81ccda50cf31a2c351957a8
 
                         for r in data['roles']:
                             if r == "Initiator":
@@ -172,14 +191,22 @@ def fitnessFunction(individual):
                             else:
                                 initiator=initiator-5
             
+<<<<<<< HEAD
             fitvalue=(attack+speed+initiator)     
             fitvalue = (float(fitvalue)*100)/(1762)
             print ('team fitness = ' +str(fitvalue))
 
+=======
+            fitvalue=(attack+speed+initiator)    
+            fitvalue = (float(fitvalue)*100)/(2075)
+            print ('team fitness = ' +str(fitvalue))
+        
+>>>>>>> 223bb6bf0cec8e1ea81ccda50cf31a2c351957a8
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        
         return fitvalue,
 
     elif strategy == 'teamfight':
@@ -208,7 +235,11 @@ def fitnessFunction(individual):
             fitvalue=strength+atk_rate+carry
             fitvalue = (float(fitvalue)*100)/(210)
             print ('team fitness = ' +str(fitvalue))
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 223bb6bf0cec8e1ea81ccda50cf31a2c351957a8
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
@@ -244,7 +275,7 @@ def fitnessFunction(individual):
             fitvalue = agi+pusher+primary_attr
             print (fitvalue)
             fitvalue = (float(fitvalue)-1)/(210-1)
-            #print ('time fitness = ' +str(fitvalue))
+
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
