@@ -1,0 +1,29 @@
+#------GANK------#
+#base_attack_max valor maximo = 70 e valor minimo = 11
+#move_speed valor maximo = 335 e valor minimo = 270
+
+#POR TIME: base_attack_max valor maximo= 350 e valor minimo = 55
+#POR TIME: move_speed valor maximo = 1675 e valor minimo = 1350
+
+#MAXIMUM FITNESS = 2075
+#MINIMUM FITNESS = 400
+#------------------#
+
+
+#------TEAMFIGHT------#
+#base_str valor maximo = 30 e valor minimo = 12
+#attack_rate valor maximo = 2 e valor minimo = 1.3
+
+#POR TIME: base_str valor maximo = 150 e valor minimo = 60
+#POR TIME: attack_rate valor maximo = 10 e valor minimo = 6.5
+
+#MAXIMUM FITNESS = 210
+#MINIMUM FITNESS = 60
+#------------------#
+
+#------PUSHER------#
+#base agi valor maximo = 36 e valor minimo 0
+
+#------COUNTERS------#
+#valor maximo 10 e valor minimo 0
+#POR TIME: valor maximo = 1016 e valor minimo = 0.1

@@ -1,10 +1,12 @@
 import sys
+import os
 import json
 import random
 import requests
 import numpy as np
 import matplotlib.pyplot as plt
 
+from operator import attrgetter
 from random import randint
 from deap import base
 from deap import creator
@@ -18,6 +20,9 @@ json_file='championStats.json'
 json_data=open(json_file)
 dataset = json.load(json_data)
 
+json_file2='counters.json'
+json_data2=open(json_file2)
+dataset2 = json.load(json_data2)
 
 
 xglobal = []
@@ -37,18 +42,54 @@ populacao = 50
 # Probabilidade De Um Individuo Sofrer Mutacao
 probmut = 0.7
 # Probabilidade De Dois Individuos Cruzarem
-probcross = 0.3
+probcross = 0.7
 # Quantidade maxima de Geracoes
-numgeracoes = 100
+numgeracoes = 500
 # Melhor resultado possivel da funcao de avaliacao
-resulfunc = 1000000
+resulfunc = 2075.0
 
 #####################################
-
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
 
 toolbox = base.Toolbox()
+
+def getHeroName(individual):
+    namesIndividual=[]
+    for id_hero in individual:
+        for data in dataset:
+            if data['id']==id_hero:
+                namesIndividual.append(str(data['localized_name']).lower())
+    return namesIndividual
+
+def checkCounters(individual):
+    namesIndividual = getHeroName(individual)
+    totalCounters=0
+    for n in namesIndividual:
+        for counters in dataset2[n]:
+        	if dataset2[n][counters] > 0:
+        		totalCounters += dataset2[n][counters] 
+    return totalCounters
+
+def checkTeam(individual):
+	team = False
+	sup = 0
+	hc = 0
+	if not team:
+		for id_hero in individual:
+			for data in dataset:
+				if data['id'] == id_hero:
+					for r in data['roles']:
+						if r == "Support":
+							sup = 1
+						elif r == "Carry":
+							hc = 1
+						elif sup == 1 and hc == 1:
+							team=True
+							return team
+	print (team)
+	return team 
+
 
 # Essa funcao tem como objetivo validar que os heros nao
 # se repitam dentro do conjunto
@@ -81,10 +122,27 @@ toolbox.register("individual", tools.initIterate, creator.Individual,
 # define the population to be a list of individuals
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
-# funcao de fitness sendo calculada apenas com agilidade
-def evalOneMax(individual):
-    strategy = sys.argv[1]
+def improveTournament(individuals, k, tournsize, fit_attr="fitness"):
+    for i in xrange(k):
+    	chosen = []
+    	chosenTemp=[]
+    	totalCountersTemp=9999999
+        aspirants = tools.selRandom(individuals, tournsize)
+        
+        for aspira in aspirants:
+        	totalCounters = checkCounters(aspira)
+        	#os._exit(1)
+        	if totalCounters <= totalCountersTemp:
+        		chosenTemp = aspira
+        		totalCountersTemp=totalCounters
+		chosen.append(chosenTemp)
+    return chosen
 
+# funcao de fitness
+def fitnessFunction(individual):
+    game = sys.argv[1]
+    strategy = sys.argv[2]
+    checkTeam_out = checkTeam(individual)
     # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
     if strategy == 'gank':
         print("----------------------------------")
@@ -93,6 +151,7 @@ def evalOneMax(individual):
         initiator=0
         attack=0
         speed=0
+<<<<<<< HEAD
         for id_hero in individual:
             for data in dataset:
                 if data['key']==id_hero:
@@ -110,17 +169,48 @@ def evalOneMax(individual):
         fitvalue=attack+speed+initiator
         fitvalue = (float(fitvalue)-300)/(2075-300)
         print ('team fitness = ' +str(fitvalue))
-        return fitvalue,
-        #normalized = (x-min(x))/(max(x)-min(x))
+=======
+        bonusFormat=0
+   
+        if game == 'dota':
+            for id_hero in individual:
+                for data in dataset:
+                    if checkTeam_out == False:
+                        fitvalue=0
+                        return fitvalue,
 
+                    elif data['id']==id_hero:
+                        print(str(data['localized_name'].lower()))
+                        attack = attack + data['base_attack_max']                    
+                        speed = speed + data['move_speed']
+                        bonusFormat=50
+
+                        for r in data['roles']:
+                            if r == "Initiator":
+                                initiator=initiator+10
+                            else:
+                                initiator=initiator-5
+            
+            fitvalue=(attack+speed+initiator)    
+            fitvalue = (float(fitvalue)*100)/(2075)
+            print ('team fitness = ' +str(fitvalue))
+        
+        elif game == 'lol':
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        else:
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        
+>>>>>>> 092fcf186d2c51feaf4dd3c60bf5e2dcf1a4dc75
+        return fitvalue,
 
     elif strategy == 'teamfight':
         print("----------------------------------")
         print(individual)
         fitvalue=0
-        carry=-1
+        carry=0
         strength=0
         atk_rate=0
+<<<<<<< HEAD
         for id_hero in individual:   
             for data in dataset:   
                 if int(data['key'])==id_hero:                    
@@ -136,12 +226,41 @@ def evalOneMax(individual):
                     
         fitvalue=strength+atk_rate+carry
         print ('team fitness = ' +str(fitvalue))
+=======
+
+        if game == 'dota':
+            for id_hero in individual:
+                for data in dataset:
+                    if data['id']==id_hero:
+                        print(str(data['localized_name']))
+                        strength = strength + data['base_str']
+                        #print("strength ", strength)
+                        atk_rate = atk_rate + data['attack_rate']
+                        #print("velocidade ", atk_rate)
+                        for r in data['roles']:
+                            if r == "Carry":
+                                carry=carry+10
+                            else:
+                                carry=carry-5
+                        
+            fitvalue=strength+atk_rate+carry
+            fitvalue = (float(fitvalue)*100)/(210)
+            print ('team fitness = ' +str(fitvalue))
+
+        elif game == 'lol':
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        else:
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+>>>>>>> 092fcf186d2c51feaf4dd3c60bf5e2dcf1a4dc75
         return fitvalue,
 
     elif strategy == 'pusher':
         print("----------------------------------")
         print(individual)
+        pusher=0
+        primary_attr=0
         fitvalue=0
+<<<<<<< HEAD
         for id_hero in individual:
             for data in dataset:
                 if data['key']==id_hero:
@@ -149,13 +268,41 @@ def evalOneMax(individual):
                     fitvalue = fitvalue + data['stats']['base_agi']
         
         print ('time fitness = ' +str(fitvalue))
+=======
+        agi=0
+        team_composition = 20
+        if game == 'dota':
+            for id_hero in individual:
+                for data in dataset:
+                    if data['id']==id_hero:
+                        print(str(data['localized_name']))
+                        agi=agi+data['base_agi']
+                        
+                        if data['primary_attr']=="str":
+                            primary_attr=primary_attr+20
+                        else:
+                            primary_attr=primary_attr+1
+                        
+                        for r in data['roles']:
+                        
+                            if r == "Pusher":
+                                pusher=pusher+10
+                            else:
+                                pusher= 0
+            fitvalue = agi+pusher+primary_attr
+            print (fitvalue)
+            fitvalue = (float(fitvalue)-1)/(210-1)
+
+        elif game == 'lol':
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        else:
+            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+>>>>>>> 092fcf186d2c51feaf4dd3c60bf5e2dcf1a4dc75
         return fitvalue,
 
-#----------
-# Operator registration
-#----------
+
 # register the goal / fitness function
-toolbox.register("evaluate", evalOneMax)
+toolbox.register("evaluate", fitnessFunction)
 
 # register the crossover operator
 toolbox.register("mate", tools.cxTwoPoint)
@@ -164,11 +311,9 @@ toolbox.register("mate", tools.cxTwoPoint)
 # flip each attribute/gene of 0.05
 toolbox.register("mutate", tools.mutShuffleIndexes, indpb=0.05)
 
-# operator for selecting individuals for breeding the next
-# generation: each individual of the current generation
-# is replaced by the 'fittest' (best) of three individuals
-# drawn randomly from the current generation.
-toolbox.register("select", tools.selTournament, tournsize=3)
+
+toolbox.register("select", tools.selTournament, tournsize=5)
+#change the parameter to improveTournament or tools.selTournament
 
 #----------
 
@@ -200,7 +345,7 @@ def main():
 
     # Variable keeping track of the number of generations
     g = 0
-    
+    totalCounters=0
     # Begin the evolution
     while max(fits) < resulfunc and g < numgeracoes:
         # A new generation
