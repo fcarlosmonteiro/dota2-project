@@ -38,15 +38,15 @@ numheros = 5
 # Quantidade de heros presentes na base de dados
 qtheros = 121
 # Populacao Total
-populacao = 20
+populacao = 50
 # Probabilidade De Um Individuo Sofrer Mutacao
-probmut = 0.5
+probmut = 0.7
 # Probabilidade De Dois Individuos Cruzarem
-probcross = 0.5
+probcross = 0.7
 # Quantidade maxima de Geracoes
-numgeracoes = 100
+numgeracoes = 500
 # Melhor resultado possivel da funcao de avaliacao
-resulfunc = 100.0
+resulfunc = 210.0
 
 #####################################
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
@@ -130,14 +130,12 @@ def improveTournament(individuals, k, tournsize, fit_attr="fitness"):
         aspirants = tools.selRandom(individuals, tournsize)
         
         for aspira in aspirants:
-     #   	print ("--->",aspira)
         	totalCounters = checkCounters(aspira)
         	#os._exit(1)
         	if totalCounters <= totalCountersTemp:
         		chosenTemp = aspira
         		totalCountersTemp=totalCounters
 		chosen.append(chosenTemp)
-	#print(chosen)
     return chosen
 
 # funcao de fitness
@@ -149,33 +147,35 @@ def fitnessFunction(individual):
     if strategy == 'gank':
         print("----------------------------------")
         print(individual)
+        totalCounters=checkCounters(individual)
         fitvalue=0
         initiator=0
         attack=0
         speed=0
-        team_composition=20
         if game == 'dota':
             for id_hero in individual:
                 for data in dataset:
                     if checkTeam_out == False:
-                        team_composition=0
+                    	fitvalue=0
+                        return fitvalue,
 
                     elif data['id']==id_hero:
+                        
                         print(str(data['localized_name'].lower()))
+                        
                         attack = attack + data['base_attack_max']
-                    
                         speed = speed + data['move_speed']
-                        #print("velocidade ", speed)
+
                         for r in data['roles']:
                             if r == "Initiator":
                                 initiator=initiator+10
                             else:
                                 initiator=initiator-5
             
-            fitvalue=(attack+speed+initiator)-team_composition
-            
-            fitvalue = (float(fitvalue)*100)/(2075)
+            fitvalue=(attack+speed+initiator)     
+            fitvalue = (float(fitvalue)*100)/(1762)
             print ('team fitness = ' +str(fitvalue))
+
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
@@ -206,9 +206,9 @@ def fitnessFunction(individual):
                                 carry=carry-5
                         
             fitvalue=strength+atk_rate+carry
-            print(fitvalue)
             fitvalue = (float(fitvalue)*100)/(210)
             print ('team fitness = ' +str(fitvalue))
+            
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
@@ -263,7 +263,7 @@ toolbox.register("mate", tools.cxTwoPoint)
 toolbox.register("mutate", tools.mutShuffleIndexes, indpb=0.05)
 
 
-toolbox.register("select", tools.selTournament, tournsize=3)
+toolbox.register("select", tools.selTournament, tournsize=5)
 #change the parameter to improveTournament or tools.selTournament
 
 #----------
