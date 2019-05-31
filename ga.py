@@ -1,10 +1,12 @@
 import sys
+import os
 import json
 import random
 import requests
 import numpy as np
 import matplotlib.pyplot as plt
 
+from operator import attrgetter
 from random import randint
 from deap import base
 from deap import creator
@@ -36,18 +38,17 @@ numheros = 5
 # Quantidade de heros presentes na base de dados
 qtheros = 121
 # Populacao Total
-populacao = 20
+populacao = 50
 # Probabilidade De Um Individuo Sofrer Mutacao
 probmut = 0.5
 # Probabilidade De Dois Individuos Cruzarem
 probcross = 0.5
 # Quantidade maxima de Geracoes
-numgeracoes = 100
+numgeracoes = 1000
 # Melhor resultado possivel da funcao de avaliacao
 resulfunc = 100.0
 
 #####################################
-
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
 creator.create("Individual", list, fitness=creator.FitnessMax)
 
@@ -121,11 +122,28 @@ toolbox.register("individual", tools.initIterate, creator.Individual,
 # define the population to be a list of individuals
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
+def improveTournament(individuals, k, tournsize, fit_attr="fitness"):
+    for i in xrange(k):
+    	chosen = []
+    	chosenTemp=[]
+    	totalCountersTemp=9999999
+        aspirants = tools.selRandom(individuals, tournsize)
+        
+        for aspira in aspirants:
+     #   	print ("--->",aspira)
+        	totalCounters = checkCounters(aspira)
+        	#os._exit(1)
+        	if totalCounters <= totalCountersTemp:
+        		chosenTemp = aspira
+        		totalCountersTemp=totalCounters
+		chosen.append(chosenTemp)
+	#print(chosen)
+    return chosen
+
 # funcao de fitness
-def evalOneMax(individual):
+def fitnessFunction(individual):
     game = sys.argv[1]
     strategy = sys.argv[2]
-    checkCounters(individual)
     checkTeam_out = checkTeam(individual)
     # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
     if strategy == 'gank':
@@ -135,33 +153,36 @@ def evalOneMax(individual):
         initiator=0
         attack=0
         speed=0
-        team_composition=20
+        bonusFormat=0
+   
         if game == 'dota':
             for id_hero in individual:
                 for data in dataset:
                     if checkTeam_out == False:
-                        team_composition=0
+                        fitvalue=0
+                        return fitvalue,
 
                     elif data['id']==id_hero:
                         print(str(data['localized_name'].lower()))
-                        attack = attack + data['base_attack_max']
-                    
+                        attack = attack + data['base_attack_max']                    
                         speed = speed + data['move_speed']
-                        #print("velocidade ", speed)
+                        bonusFormat=50
+
                         for r in data['roles']:
                             if r == "Initiator":
                                 initiator=initiator+10
                             else:
                                 initiator=initiator-5
             
-            fitvalue=(attack+speed+initiator)-team_composition
-            
+            fitvalue=(attack+speed+initiator)    
             fitvalue = (float(fitvalue)*100)/(2075)
             print ('team fitness = ' +str(fitvalue))
+        
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+        
         return fitvalue,
 
     elif strategy == 'teamfight':
@@ -188,9 +209,9 @@ def evalOneMax(individual):
                                 carry=carry-5
                         
             fitvalue=strength+atk_rate+carry
-            print(fitvalue)
             fitvalue = (float(fitvalue)*100)/(210)
             print ('team fitness = ' +str(fitvalue))
+
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
@@ -226,18 +247,16 @@ def evalOneMax(individual):
             fitvalue = agi+pusher+primary_attr
             print (fitvalue)
             fitvalue = (float(fitvalue)-1)/(210-1)
-            #print ('time fitness = ' +str(fitvalue))
+
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         return fitvalue,
 
-#----------
-# Operator registration
-#----------
+
 # register the goal / fitness function
-toolbox.register("evaluate", evalOneMax)
+toolbox.register("evaluate", fitnessFunction)
 
 # register the crossover operator
 toolbox.register("mate", tools.cxTwoPoint)
@@ -246,11 +265,9 @@ toolbox.register("mate", tools.cxTwoPoint)
 # flip each attribute/gene of 0.05
 toolbox.register("mutate", tools.mutShuffleIndexes, indpb=0.05)
 
-# operator for selecting individuals for breeding the next
-# generation: each individual of the current generation
-# is replaced by the 'fittest' (best) of three individuals
-# drawn randomly from the current generation.
+
 toolbox.register("select", tools.selTournament, tournsize=3)
+#change the parameter to improveTournament or tools.selTournament
 
 #----------
 
@@ -282,7 +299,7 @@ def main():
 
     # Variable keeping track of the number of generations
     g = 0
-    
+    totalCounters=0
     # Begin the evolution
     while max(fits) < resulfunc and g < numgeracoes:
         # A new generation
