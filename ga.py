@@ -151,25 +151,6 @@ def fitnessFunction(individual):
         initiator=0
         attack=0
         speed=0
-<<<<<<< HEAD
-        for id_hero in individual:
-            for data in dataset:
-                if data['key']==id_hero:
-                    print(str(data['name']))
-                    attack = attack + data['stats']['attackdamage']
-                    #print("atack ", attack)
-                    speed = speed + data['stats']['movespeed']
-                    #print("velocidade ", speed)
-                    for r in data['tags']:
-                        if r == "Fighter":
-                            initiator=10
-                        else:
-                            initiator=-5
-                    
-        fitvalue=attack+speed+initiator
-        fitvalue = (float(fitvalue)-300)/(2075-300)
-        print ('team fitness = ' +str(fitvalue))
-=======
         bonusFormat=0
    
         if game == 'dota':
@@ -196,11 +177,24 @@ def fitnessFunction(individual):
             print ('team fitness = ' +str(fitvalue))
         
         elif game == 'lol':
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            for id_hero in individual:
+                for data in dataset:
+                    if data['key']==id_hero:
+                        print(str(data['name']))
+                        attack = attack + data['stats']['attackdamage']
+                        speed = speed + data['stats']['movespeed']
+                        for r in data['tags']:
+                            if r == "Fighter":
+                                initiator=10
+                            else:
+                                initiator=-5
+                        
+            fitvalue=attack+speed+initiator
+            fitvalue = (float(fitvalue)-300)/(2075-300)
+            print ('team fitness = ' +str(fitvalue))
         else:
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         
->>>>>>> 092fcf186d2c51feaf4dd3c60bf5e2dcf1a4dc75
         return fitvalue,
 
     elif strategy == 'teamfight':
@@ -210,23 +204,6 @@ def fitnessFunction(individual):
         carry=0
         strength=0
         atk_rate=0
-<<<<<<< HEAD
-        for id_hero in individual:   
-            for data in dataset:   
-                if int(data['key'])==id_hero:                    
-                    strength = strength + data['stats']['attackdamage']
-                    #print("strength ", strength)
-                    atk_rate = atk_rate + data['stats']['attackspeedperlevel']
-                    #print("velocidade ", atk_rate)
-                    for r in data['tags']:
-                        if r == "Fighter":
-                            carry=10
-                        else:
-                            carry=0
-                    
-        fitvalue=strength+atk_rate+carry
-        print ('team fitness = ' +str(fitvalue))
-=======
 
         if game == 'dota':
             for id_hero in individual:
@@ -251,7 +228,6 @@ def fitnessFunction(individual):
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
->>>>>>> 092fcf186d2c51feaf4dd3c60bf5e2dcf1a4dc75
         return fitvalue,
 
     elif strategy == 'pusher':
@@ -260,15 +236,6 @@ def fitnessFunction(individual):
         pusher=0
         primary_attr=0
         fitvalue=0
-<<<<<<< HEAD
-        for id_hero in individual:
-            for data in dataset:
-                if data['key']==id_hero:
-                    print(str(data['name']) + ' agility = ' + str(data['base_agi']))
-                    fitvalue = fitvalue + data['stats']['base_agi']
-        
-        print ('time fitness = ' +str(fitvalue))
-=======
         agi=0
         team_composition = 20
         if game == 'dota':
@@ -297,7 +264,6 @@ def fitnessFunction(individual):
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
->>>>>>> 092fcf186d2c51feaf4dd3c60bf5e2dcf1a4dc75
         return fitvalue,
 
 
