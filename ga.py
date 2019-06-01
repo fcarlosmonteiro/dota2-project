@@ -78,13 +78,13 @@ def checkCounters(individual):
         		totalCounters += dataset2[n][counters] 
     return totalCounters
 
-def checkTeam(individual):
+def checkTeam(individual, datasetParam):
 	team = False
 	sup = 0
 	hc = 0
 	if not team:
 		for id_hero in individual:
-			for data in datasetlol:
+			for data in datasetParam:
 				if data['id'] == str(id_hero):
 					for r in data['roles']:
 						if r == "Support":
@@ -151,7 +151,10 @@ def improveTournament(individuals, k, tournsize, fit_attr="fitness"):
 def fitnessFunction(individual):
     game = sys.argv[1]
     strategy = sys.argv[2]
-    checkTeam_out = checkTeam(individual)
+    if game == 'lol':
+        checkTeam_out = checkTeam(individual, datasetlol)
+    else:
+        checkTeam_out = checkTeam(individual, dataset)
     # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
     if strategy == 'gank':
         print("----------------------------------")
