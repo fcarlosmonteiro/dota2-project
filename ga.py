@@ -66,7 +66,7 @@ def getHeroName(individual):
     for id_hero in individual:
         for data in dataset:
             if data['id']==id_hero:
-                namesIndividual.append(str(data['name']).lower())
+                namesIndividual.append(str(data['localized_name']).lower())
     return namesIndividual
 
 def checkCounters(individual):
@@ -194,7 +194,7 @@ def fitnessFunction(individual):
                         return fitvalue,
 
                     if data['id']==str(id_hero):
-                        print(str(data['name']))
+                        print(str(data['localized_name']))
                         attack = attack + data['stats']['attackdamage']
                         speed = speed + data['stats']['movespeed']
                         for r in data['roles']:
@@ -246,7 +246,7 @@ def fitnessFunction(individual):
                         return fitvalue,
 
                     if data['id']==str(id_hero):
-                        print(str(data['name']))
+                        print(str(data['localized_name']))
                         strength = strength + data['stats']['attackdamage']
                         #print("strength ", strength)
                         atk_rate = atk_rate + data['stats']['attackdamageperlevel']
@@ -422,7 +422,7 @@ def main():
     for b in best_ind:
         for data in datasetlol:
             if int(data['id'])==b:
-                best_ind_name.append(str(data['name']))
+                best_ind_name.append(str(data['localized_name']))
                 image_urls.append(data['icon'])
 
 
