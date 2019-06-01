@@ -16,7 +16,7 @@ from PIL import Image
 from random import sample
 from functools import partial
 
-json_file='championStats.json'
+json_file='heroStats.json'
 json_data=open(json_file)
 dataset = json.load(json_data)
 
@@ -24,6 +24,13 @@ json_file2='counters.json'
 json_data2=open(json_file2)
 dataset2 = json.load(json_data2)
 
+json_filelol='championsStats.json'
+json_datalol=open(json_filelol)
+datasetlol = json.load(json_datalol)
+
+json_filelol2='counters.json'
+json_datalol2=open(json_filelol2)
+datasetlol2 = json.load(json_datalol2)
 
 xglobal = []
 yglobal = []
@@ -44,7 +51,7 @@ probmut = 0.7
 # Probabilidade De Dois Individuos Cruzarem
 probcross = 0.7
 # Quantidade maxima de Geracoes
-numgeracoes = 500
+numgeracoes = 100
 # Melhor resultado possivel da funcao de avaliacao
 resulfunc = 2075.0
 
@@ -58,8 +65,8 @@ def getHeroName(individual):
     namesIndividual=[]
     for id_hero in individual:
         for data in dataset:
-            if data['id']==id_hero:
-                namesIndividual.append(str(data['localized_name']).lower())
+            if data['key']==id_hero:
+                namesIndividual.append(str(data['name']).lower())
     return namesIndividual
 
 def checkCounters(individual):
@@ -77,16 +84,18 @@ def checkTeam(individual):
 	hc = 0
 	if not team:
 		for id_hero in individual:
-			for data in dataset:
-				if data['id'] == id_hero:
+			for data in datasetlol:
+				if data['key'] == str(id_hero):
 					for r in data['roles']:
 						if r == "Support":
 							sup = 1
 						elif r == "Carry":
 							hc = 1
-						elif sup == 1 and hc == 1:
-							team=True
-							return team
+        if sup == 1 and hc == 1:
+            sup = 0
+            hc = 0
+            team = True
+
 	print (team)
 	return team 
 
@@ -178,19 +187,23 @@ def fitnessFunction(individual):
         
         elif game == 'lol':
             for id_hero in individual:
-                for data in dataset:
-                    if data['key']==id_hero:
+                for data in datasetlol:
+                    if checkTeam_out == False:
+                        fitvalue=0
+                        return fitvalue,
+
+                    if data['key']==str(id_hero):
                         print(str(data['name']))
                         attack = attack + data['stats']['attackdamage']
                         speed = speed + data['stats']['movespeed']
-                        for r in data['tags']:
+                        for r in data['roles']:
                             if r == "Fighter":
                                 initiator=10
                             else:
                                 initiator=-5
                         
             fitvalue=attack+speed+initiator
-            fitvalue = (float(fitvalue)-300)/(2075-300)
+            fitvalue = (float(fitvalue)*100)/(2075)
             print ('team fitness = ' +str(fitvalue))
         else:
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
@@ -225,7 +238,27 @@ def fitnessFunction(individual):
             print ('team fitness = ' +str(fitvalue))
 
         elif game == 'lol':
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            for id_hero in individual:
+                for data in datasetlol:
+                    if checkTeam_out == False:
+                        fitvalue=0
+                        return fitvalue,
+
+                    if data['key']==str(id_hero):
+                        print(str(data['name']))
+                        strength = strength + data['stats']['attackdamage']
+                        #print("strength ", strength)
+                        atk_rate = atk_rate + data['stats']['attackdamageperlevel']
+                        #print("velocidade ", atk_rate)
+                        for r in data['roles']:
+                            if r == "Top":
+                                carry=carry+10
+                            else:
+                                carry=carry-5
+                        
+            fitvalue=strength+atk_rate+carry
+            fitvalue = (float(fitvalue)*100)/(210)
+            print ('team fitness = ' +str(fitvalue))
         else:
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         return fitvalue,
@@ -386,7 +419,7 @@ def main():
     best_ind_name =[]
     image_urls=[]
     for b in best_ind:
-        for data in dataset:
+        for data in datasetlol:
             if int(data['key'])==b:
                 best_ind_name.append(str(data['name']))
                 image_urls.append(data['icon'])

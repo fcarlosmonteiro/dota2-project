@@ -8,23 +8,6 @@ The project requires a couple of python2.7 packages. Install them using:
 ```bash
 pip install -r requirements.txt
 ```
-<<<<<<< HEAD
-## Champion Tags
-League Of Legends's meta (playstyle) changes as new patches are released. With that, champions tags keep changing as their skills and stats changes. To keep the data updated, is necessary to add new tags or edit the older ones to fit the champions in their exact role.
-
-Assassin:
-Fighter:
-Initiator:
-Mage:
-Marksman:
-Melee:
-Nuker:
-Pusher:
-Ranged:
-Recommended:
-Support:
-Tank:
-=======
 
 ## Run informations
 To execute your project, run `\.ga.py <game> <strategy>`
@@ -45,4 +28,3 @@ To execute your project, run `\.ga.py <game> <strategy>`
 
 ![myimage5](https://github.com/fcarlosmonteiro/dota2-project/blob/master/Figure_3.png)
 ![myimage6](https://github.com/fcarlosmonteiro/dota2-project/blob/master/test3.jpg)
->>>>>>> 092fcf186d2c51feaf4dd3c60bf5e2dcf1a4dc75
