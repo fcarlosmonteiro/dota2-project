@@ -65,7 +65,7 @@ def getHeroName(individual):
     namesIndividual=[]
     for id_hero in individual:
         for data in dataset:
-            if data['key']==id_hero:
+            if data['id']==id_hero:
                 namesIndividual.append(str(data['name']).lower())
     return namesIndividual
 
@@ -85,7 +85,7 @@ def checkTeam(individual):
 	if not team:
 		for id_hero in individual:
 			for data in datasetlol:
-				if data['key'] == str(id_hero):
+				if data['id'] == str(id_hero):
 					for r in data['roles']:
 						if r == "Support":
 							sup = 1
@@ -160,12 +160,8 @@ def fitnessFunction(individual):
         initiator=0
         attack=0
         speed=0
-<<<<<<< HEAD
         bonusFormat=0
    
-=======
-        team_composition=20
->>>>>>> f6d9b9e32ce379f720c7933f1db523a772aa85e1
         if game == 'dota':
             for id_hero in individual:
                 for data in dataset:
@@ -174,14 +170,9 @@ def fitnessFunction(individual):
                         return fitvalue,
 
                     elif data['id']==id_hero:
-<<<<<<< HEAD
-                        print(str(data['localized_name'].lower()))
-                        attack = attack + data['base_attack_max']                    
-=======
                         print(str(data['localized_name']))
                         attack = attack + data['base_attack_max']
                     
->>>>>>> f6d9b9e32ce379f720c7933f1db523a772aa85e1
                         speed = speed + data['move_speed']
                         bonusFormat=50
 
@@ -202,7 +193,7 @@ def fitnessFunction(individual):
                         fitvalue=0
                         return fitvalue,
 
-                    if data['key']==str(id_hero):
+                    if data['id']==str(id_hero):
                         print(str(data['name']))
                         attack = attack + data['stats']['attackdamage']
                         speed = speed + data['stats']['movespeed']
@@ -254,7 +245,7 @@ def fitnessFunction(individual):
                         fitvalue=0
                         return fitvalue,
 
-                    if data['key']==str(id_hero):
+                    if data['id']==str(id_hero):
                         print(str(data['name']))
                         strength = strength + data['stats']['attackdamage']
                         #print("strength ", strength)
@@ -430,7 +421,7 @@ def main():
     image_urls=[]
     for b in best_ind:
         for data in datasetlol:
-            if int(data['key'])==b:
+            if int(data['id'])==b:
                 best_ind_name.append(str(data['name']))
                 image_urls.append(data['icon'])
 
