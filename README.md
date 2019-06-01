@@ -9,6 +9,8 @@ The project requires a couple of python2.7 packages. Install them using:
 pip install -r requirements.txt
 ```
 
+=======
+
 ## Run informations
 To execute your project, run `\.ga.py <game> <strategy>`
 
@@ -28,3 +30,7 @@ To execute your project, run `\.ga.py <game> <strategy>`
 
 ![myimage5](https://github.com/fcarlosmonteiro/dota2-project/blob/master/Figure_3.png)
 ![myimage6](https://github.com/fcarlosmonteiro/dota2-project/blob/master/test3.jpg)
+<<<<<<< HEAD
+=======
+>>>>>>> 55962aa9a61b23696140473a56ba3cd30e870e25
+>>>>>>> f6d9b9e32ce379f720c7933f1db523a772aa85e1

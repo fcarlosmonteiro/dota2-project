@@ -160,8 +160,12 @@ def fitnessFunction(individual):
         initiator=0
         attack=0
         speed=0
+<<<<<<< HEAD
         bonusFormat=0
    
+=======
+        team_composition=20
+>>>>>>> f6d9b9e32ce379f720c7933f1db523a772aa85e1
         if game == 'dota':
             for id_hero in individual:
                 for data in dataset:
@@ -170,8 +174,14 @@ def fitnessFunction(individual):
                         return fitvalue,
 
                     elif data['id']==id_hero:
+<<<<<<< HEAD
                         print(str(data['localized_name'].lower()))
                         attack = attack + data['base_attack_max']                    
+=======
+                        print(str(data['localized_name']))
+                        attack = attack + data['base_attack_max']
+                    
+>>>>>>> f6d9b9e32ce379f720c7933f1db523a772aa85e1
                         speed = speed + data['move_speed']
                         bonusFormat=50
 
