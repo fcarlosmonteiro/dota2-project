@@ -1,5 +1,5 @@
 # dota2-project
-A search-based League Of Legends hero picker
+A search-based Dota 2 and League Of Legends hero picker
 
 The strategy applied is a genetic algorithm to generate a set of 5 different heroes. Additionally, a fitness function employing features such as gank, teamfight and pusher team.
 
@@ -30,7 +30,3 @@ To execute your project, run `\.ga.py <game> <strategy>`
 
 ![myimage5](https://github.com/fcarlosmonteiro/dota2-project/blob/master/Figure_3.png)
 ![myimage6](https://github.com/fcarlosmonteiro/dota2-project/blob/master/test3.jpg)
-<<<<<<< HEAD
-=======
->>>>>>> 55962aa9a61b23696140473a56ba3cd30e870e25
->>>>>>> f6d9b9e32ce379f720c7933f1db523a772aa85e1
