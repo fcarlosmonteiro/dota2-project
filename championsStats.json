@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": 1,
     "localized_name": "Aatrox",
     "title": "the Darkin Blade",
     "roles": [
@@ -37,7 +37,7 @@
     "description": "One of the ancient darkin, Aatrox was once a peerless swordmaster who reveled in the bloody chaos of the battlefield. Trapped within his own blade by the magic of his foes, he waited out the millennia for a suitable host to wield him—this mortal warrior..."
   },
   {
-    "id": "2",
+    "id": 2,
     "localized_name": "Ahri",
     "title": "the Nine-Tailed Fox",
     "roles": [
@@ -74,7 +74,7 @@
     "description": "Innately connected to the latent power of Runeterra, Ahri is a vastaya who can reshape magic into orbs of raw energy. She revels in toying with her prey by manipulating their emotions before devouring their life essence. Despite her predatory nature..."
   },
   {
-    "id": "3",
+    "id": 3,
     "localized_name": "Akali",
     "title": "the Fist of Shadow",
     "roles": [
@@ -112,7 +112,7 @@
     "description": "A prodigy in the fighting arts, Akali is a member of the martial order known as the Kinkou. She succeeds her mother as the Fist of Shadow, entrusted with the sacred duty to end those who would bring imbalance to her homeland. While some find her methods..."
   },
   {
-    "id": "4",
+    "id": 4,
     "localized_name": "Alistar",
     "title": "the Minotaur",
     "roles": [
@@ -149,7 +149,7 @@
     "description": "Always a mighty warrior with a fearsome reputation, Alistar seeks revenge for the death of his clan at the hands of the Noxian empire. Though he was enslaved and forced into the life of a gladiator, his unbreakable will was what kept him from truly..."
   },
   {
-    "id": "5",
+    "id": 5,
     "localized_name": "Amumu",
     "title": "the Sad Mummy",
     "roles": [
@@ -187,7 +187,7 @@
     "description": "Legend claims that Amumu is a lonely and melancholy soul from ancient Shurima, roaming the world in search of a friend. Doomed by an ancient curse to remain alone forever, his touch is death, his affection ruin. Those who claim to have seen him describe..."
   },
   {
-    "id": "6",
+    "id": 6,
     "localized_name": "Anivia",
     "title": "the Cryophoenix",
     "roles": [

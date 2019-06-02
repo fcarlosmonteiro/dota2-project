@@ -85,7 +85,7 @@ def checkTeam(individual, datasetParam):
 	if not team:
 		for id_hero in individual:
 			for data in datasetParam:
-				if data['id'] == str(id_hero):
+				if data['id'] == id_hero:
 					for r in data['roles']:
 						if r == "Support":
 							sup = 1
@@ -153,7 +153,7 @@ def fitnessFunction(individual):
     strategy = sys.argv[2]
     if game == 'lol':
         checkTeam_out = checkTeam(individual, datasetlol)
-    else:
+    elif game == 'dota':
         checkTeam_out = checkTeam(individual, dataset)
     # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
     if strategy == 'gank':
@@ -323,6 +323,7 @@ toolbox.register("select", tools.selTournament, tournsize=5)
 def main():
 
     random.seed(64)
+    game = sys.argv[1]
 
     # create an initial population of 300 individuals (where
     # each individual is a list of integers)
@@ -422,12 +423,19 @@ def main():
     #get heros name
     best_ind_name =[]
     image_urls=[]
-    for b in best_ind:
-        for data in datasetlol:
-            if int(data['id'])==b:
-                best_ind_name.append(str(data['localized_name']))
-                image_urls.append(data['icon'])
 
+    if game == 'lol':
+        for b in best_ind:
+            for data in datasetlol:
+                if int(data['id'])==b:
+                    best_ind_name.append(str(data['localized_name']))
+                    image_urls.append(data['icon'])
+    elif game == 'dota':
+        for b in best_ind:
+            for data in dataset:
+                if int(data['id'])==b:
+                    best_ind_name.append(str(data['localized_name']))
+                    image_urls.append(data['img'])
 
     print("Best individual is %s, %s" % (best_ind_name, best_ind.fitness.values))
     print("-- End of (successful) evolution --")
@@ -448,8 +456,12 @@ def main():
     #the best team plot
     #it works just with internet
     images=[]
-    for im in image_urls:
-        images.append(Image.open(requests.get(im, stream=True).raw))
+    if game == 'lol':
+        for im in image_urls:
+            images.append(Image.open(requests.get(im, stream=True).raw))
+    elif game == 'dota':
+        for im in image_urls:
+            images.append(Image.open(requests.get('https://api.opendota.com'+im, stream=True).raw))
 
     widths, heights = zip(*(i.size for i in images))
     total_width = sum(widths)
