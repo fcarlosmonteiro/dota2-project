@@ -210,7 +210,7 @@ def fitnessFunction(individual):
             fitvalue = (float(fitvalue)*100)/(2075)
             print ('team fitness = ' +str(fitvalue))
         else:
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            sys.exit(game + ' evaluation isn\'t working yet. =( ')
         
         return fitvalue,
 
@@ -264,7 +264,7 @@ def fitnessFunction(individual):
             fitvalue = (float(fitvalue)*100)/(210)
             print ('team fitness = ' +str(fitvalue))
         else:
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            sys.exit(game + ' evaluation isn\'t working yet. =( ')
         return fitvalue,
 
     elif strategy == 'pusher':
@@ -300,7 +300,7 @@ def fitnessFunction(individual):
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            sys.exit(game + ' evaluation isn\'t working yet. =( ')
         return fitvalue,
 
 
