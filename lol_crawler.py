@@ -13,23 +13,23 @@ class LinkCheckerSpider(CrawlSpider):
     
     def start_requests(self):
         for data in self.dataset:            
-            championName = data['localized_name'].lower()
+            championId = data['id']
             # file = open("counters.txt", 'a')
             # file.write('----------------------------')
             # file.write(championName.upper() + '\r\n')
             # file.close()
             request = scrapy.Request(url = self.domain + data['localized_name'].lower(),callback = self.parse)
-            request.meta['championName'] = championName
+            request.meta['championId'] = championId
             yield request
 
     def parse(self, response):
         a_selectors = response.css("#weak-against p.RecommendedCounterName::text").extract()        
-        champName = response.meta['championName']
+        championId = response.meta['championId']
         # Loop on each tag
         # print(a_selectors)
-        fileCreation = open('counters/' + champName + ".txt", 'w+')
+        fileCreation = open('counters/' + championId + ".txt", 'w+')
         fileCreation.close()
-        file = open('counters/' + champName + ".txt", 'a')
+        file = open('counters/' + championId + ".txt", 'a')
         for selector in a_selectors:            
             file.write(selector + '\r\n')            
         file.close()    
