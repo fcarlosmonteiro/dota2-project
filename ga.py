@@ -24,6 +24,13 @@ json_file2='counters.json'
 json_data2=open(json_file2)
 dataset2 = json.load(json_data2)
 
+json_filelol='championsStats.json'
+json_datalol=open(json_filelol)
+datasetlol = json.load(json_datalol)
+
+json_filelol2='counters.json'
+json_datalol2=open(json_filelol2)
+datasetlol2 = json.load(json_datalol2)
 
 xglobal = []
 yglobal = []
@@ -36,7 +43,7 @@ gglobalTemp = 0
 # Numero de heros
 numheros = 5
 # Quantidade de heros presentes na base de dados
-qtheros = 121
+qtheros = 141
 # Populacao Total
 populacao = 50
 # Probabilidade De Um Individuo Sofrer Mutacao
@@ -44,7 +51,7 @@ probmut = 0.7
 # Probabilidade De Dois Individuos Cruzarem
 probcross = 0.7
 # Quantidade maxima de Geracoes
-numgeracoes = 500
+numgeracoes = 100
 # Melhor resultado possivel da funcao de avaliacao
 resulfunc = 2075.0
 
@@ -71,22 +78,24 @@ def checkCounters(individual):
         		totalCounters += dataset2[n][counters] 
     return totalCounters
 
-def checkTeam(individual):
+def checkTeam(individual, datasetParam):
 	team = False
 	sup = 0
 	hc = 0
 	if not team:
 		for id_hero in individual:
-			for data in dataset:
+			for data in datasetParam:
 				if data['id'] == id_hero:
 					for r in data['roles']:
 						if r == "Support":
 							sup = 1
 						elif r == "Carry":
 							hc = 1
-						elif sup == 1 and hc == 1:
-							team=True
-							return team
+        if sup == 1 and hc == 1:
+            sup = 0
+            hc = 0
+            team = True
+
 	print (team)
 	return team 
 
@@ -142,7 +151,10 @@ def improveTournament(individuals, k, tournsize, fit_attr="fitness"):
 def fitnessFunction(individual):
     game = sys.argv[1]
     strategy = sys.argv[2]
-    checkTeam_out = checkTeam(individual)
+    if game == 'lol':
+        checkTeam_out = checkTeam(individual, datasetlol)
+    elif game == 'dota':
+        checkTeam_out = checkTeam(individual, dataset)
     # f(x) = Somatorio(Initiator) + Somatorio(attack) + Somatorio(move_speed)
     if strategy == 'gank':
         print("----------------------------------")
@@ -161,8 +173,9 @@ def fitnessFunction(individual):
                         return fitvalue,
 
                     elif data['id']==id_hero:
-                        print(str(data['localized_name'].lower()))
-                        attack = attack + data['base_attack_max']                    
+                        print(str(data['localized_name']))
+                        attack = attack + data['base_attack_max']
+                    
                         speed = speed + data['move_speed']
                         bonusFormat=50
 
@@ -177,9 +190,27 @@ def fitnessFunction(individual):
             print ('team fitness = ' +str(fitvalue))
         
         elif game == 'lol':
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            for id_hero in individual:
+                for data in datasetlol:
+                    if checkTeam_out == False:
+                        fitvalue=0
+                        return fitvalue,
+
+                    if data['id']==str(id_hero):
+                        print(str(data['localized_name']))
+                        attack = attack + data['stats']['attackdamage']
+                        speed = speed + data['stats']['movespeed']
+                        for r in data['roles']:
+                            if r == "Fighter":
+                                initiator=10
+                            else:
+                                initiator=-5
+                        
+            fitvalue=attack+speed+initiator
+            fitvalue = (float(fitvalue)*100)/(2075)
+            print ('team fitness = ' +str(fitvalue))
         else:
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            sys.exit(game + ' evaluation isn\'t working yet. =( ')
         
         return fitvalue,
 
@@ -211,9 +242,29 @@ def fitnessFunction(individual):
             print ('team fitness = ' +str(fitvalue))
 
         elif game == 'lol':
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            for id_hero in individual:
+                for data in datasetlol:
+                    if checkTeam_out == False:
+                        fitvalue=0
+                        return fitvalue,
+
+                    if data['id']==str(id_hero):
+                        print(str(data['localized_name']))
+                        strength = strength + data['stats']['attackdamage']
+                        #print("strength ", strength)
+                        atk_rate = atk_rate + data['stats']['attackdamageperlevel']
+                        #print("velocidade ", atk_rate)
+                        for r in data['roles']:
+                            if r == "Top":
+                                carry=carry+10
+                            else:
+                                carry=carry-5
+                        
+            fitvalue=strength+atk_rate+carry
+            fitvalue = (float(fitvalue)*100)/(210)
+            print ('team fitness = ' +str(fitvalue))
         else:
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            sys.exit(game + ' evaluation isn\'t working yet. =( ')
         return fitvalue,
 
     elif strategy == 'pusher':
@@ -249,7 +300,7 @@ def fitnessFunction(individual):
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
         else:
-            sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
+            sys.exit(game + ' evaluation isn\'t working yet. =( ')
         return fitvalue,
 
 
@@ -272,6 +323,7 @@ toolbox.register("select", tools.selTournament, tournsize=5)
 def main():
 
     random.seed(64)
+    game = sys.argv[1]
 
     # create an initial population of 300 individuals (where
     # each individual is a list of integers)
@@ -371,12 +423,19 @@ def main():
     #get heros name
     best_ind_name =[]
     image_urls=[]
-    for b in best_ind:
-        for data in dataset:
-            if data['id']==b:
-                best_ind_name.append(str(data['localized_name']))
-                image_urls.append(data['img'])
 
+    if game == 'lol':
+        for b in best_ind:
+            for data in datasetlol:
+                if int(data['id'])==b:
+                    best_ind_name.append(str(data['localized_name']))
+                    image_urls.append(data['icon'])
+    elif game == 'dota':
+        for b in best_ind:
+            for data in dataset:
+                if int(data['id'])==b:
+                    best_ind_name.append(str(data['localized_name']))
+                    image_urls.append(data['img'])
 
     print("Best individual is %s, %s" % (best_ind_name, best_ind.fitness.values))
     print("-- End of (successful) evolution --")
@@ -397,8 +456,12 @@ def main():
     #the best team plot
     #it works just with internet
     images=[]
-    for im in image_urls:
-        images.append(Image.open(requests.get('https://api.opendota.com'+im, stream=True).raw))
+    if game == 'lol':
+        for im in image_urls:
+            images.append(Image.open(requests.get(im, stream=True).raw))
+    elif game == 'dota':
+        for im in image_urls:
+            images.append(Image.open(requests.get('https://api.opendota.com'+im, stream=True).raw))
 
     widths, heights = zip(*(i.size for i in images))
     total_width = sum(widths)
