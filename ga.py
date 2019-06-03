@@ -51,7 +51,7 @@ probmut = 0.7
 # Probabilidade De Dois Individuos Cruzarem
 probcross = 0.7
 # Quantidade maxima de Geracoes
-numgeracoes = 100
+numgeracoes = 500
 # Melhor resultado possivel da funcao de avaliacao
 resulfunc = 2075.0
 
