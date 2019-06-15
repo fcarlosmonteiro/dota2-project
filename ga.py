@@ -53,7 +53,7 @@ probcross = 0.7
 # Quantidade maxima de Geracoes
 numgeracoes = 500
 # Melhor resultado possivel da funcao de avaliacao
-resulfunc = 2075.0
+resulfunc = 210.0
 
 #####################################
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
@@ -96,7 +96,6 @@ def checkTeam(individual, datasetParam):
             hc = 0
             team = True
 
-	print (team)
 	return team 
 
 
@@ -181,9 +180,9 @@ def fitnessFunction(individual):
 
                         for r in data['roles']:
                             if r == "Initiator":
-                                initiator=initiator+10
+                                initiator=10
                             else:
-                                initiator=initiator-5
+                                initiator=0
             
             fitvalue=(attack+speed+initiator)    
             fitvalue = (float(fitvalue)*100)/(2075)
@@ -204,7 +203,7 @@ def fitnessFunction(individual):
                             if r == "Fighter":
                                 initiator=10
                             else:
-                                initiator=-5
+                               pass
                         
             fitvalue=attack+speed+initiator
             fitvalue = (float(fitvalue)*100)/(2075)
@@ -225,19 +224,22 @@ def fitnessFunction(individual):
         if game == 'dota':
             for id_hero in individual:
                 for data in dataset:
-                    if data['id']==id_hero:
-                        print(str(data['localized_name']))
-                        strength = strength + data['base_str']
-                        #print("strength ", strength)
-                        atk_rate = atk_rate + data['attack_rate']
-                        #print("velocidade ", atk_rate)
+                	if checkTeam_out == False:
+                		fitvalue = 0
+                		return fitvalue,
+
+            		if data['id']==id_hero:
+            			print(str(data['localized_name']))
+            			strength = strength + data['base_str']
+            			atk_rate = atk_rate + data['attack_rate']
                         for r in data['roles']:
                             if r == "Carry":
-                                carry=carry+10
+                                carry=10
                             else:
-                                carry=carry-5
-                        
+                                carry=0
+            
             fitvalue=strength+atk_rate+carry
+            print(fitvalue)
             fitvalue = (float(fitvalue)*100)/(210)
             print ('team fitness = ' +str(fitvalue))
 
@@ -265,6 +267,7 @@ def fitnessFunction(individual):
             print ('team fitness = ' +str(fitvalue))
         else:
             sys.exit(game + ' evaluation isn\'t working yet. =( ')
+        
         return fitvalue,
 
     elif strategy == 'pusher':
@@ -290,9 +293,9 @@ def fitnessFunction(individual):
                         for r in data['roles']:
                         
                             if r == "Pusher":
-                                pusher=pusher+10
+                                pusher=10
                             else:
-                                pusher= 0
+                                pusher=0
             fitvalue = agi+pusher+primary_attr
             print (fitvalue)
             fitvalue = (float(fitvalue)-1)/(210-1)
