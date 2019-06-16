@@ -263,7 +263,7 @@ def fitnessFunction(individual):
                                 carry=carry-5
                         
             fitvalue=strength+atk_rate+carry
-            fitvalue = (float(fitvalue)*100)/(210)
+            fitvalue = (float(fitvalue)*100)/(375)
             print ('team fitness = ' +str(fitvalue))
         else:
             sys.exit(game + ' evaluation isn\'t working yet. =( ')
