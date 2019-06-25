@@ -82,7 +82,7 @@ def checkTeam(individual, datasetParam):
 	team = False
 	sup = 0
 	hc = 0
-    print(datasetParam)
+    
 	if not team:
 		for id_hero in individual:
 			for data in datasetParam:
