@@ -185,8 +185,10 @@ def fitnessFunction(individual):
                             else:
                                 initiator=0
             
-            fitvalue=(attack+speed+initiator)    
-            fitvalue = (float(fitvalue)*100)/(2075)
+            fitvalue=float(attack+speed+initiator)
+            #normalization
+            fitvalue=(fitvalue-0)/(1900-0)
+            #fitvalue = (float(fitvalue)*100)/(2075)
             print ('team fitness = ' +str(fitvalue))
         
         elif game == 'lol':
@@ -205,8 +207,10 @@ def fitnessFunction(individual):
                             else:
                                initiator=0
                         
-            fitvalue=attack+speed+initiator
-            fitvalue = (float(fitvalue)*100)/(2075)
+            fitvalue=float(attack+speed+initiator)
+            #normalization
+            fitvalue=(fitvalue-0)/(2075-0)
+            #fitvalue = (float(fitvalue)*100)/(2075)
             print ('team fitness = ' +str(fitvalue))
         else:
             sys.exit(game + ' evaluation isn\'t working yet. =( ')
@@ -232,15 +236,18 @@ def fitnessFunction(individual):
             			print(str(data['localized_name']))
             			strength = strength + data['base_str']
             			atk_rate = atk_rate + data['attack_rate']
+            			bonusFormat=50
                         for r in data['roles']:
                             if r == "Carry":
                                 carry=10
                             else:
                                 carry=0
             
-            fitvalue=strength+atk_rate+carry
+            fitvalue=float(strength+atk_rate+carry)
             print(fitvalue)
-            fitvalue = (float(fitvalue)*100)/(210)
+            #normalization
+            fitvalue=(fitvalue-0)/(170-0)
+            #fitvalue = (float(fitvalue)*100)/(210)
             print ('team fitness = ' +str(fitvalue))
 
         elif game == 'lol':
@@ -262,8 +269,10 @@ def fitnessFunction(individual):
                             else:
                                 carry=0
                         
-            fitvalue=strength+atk_rate+carry
-            fitvalue = (float(fitvalue)*100)/(375)
+            fitvalue=float(strength+atk_rate+carry)
+            #normalization
+            fitvalue=(fitvalue-0)/(375-0)
+            #fitvalue = (float(fitvalue)*100)/(375)
             print ('team fitness = ' +str(fitvalue))
         else:
             sys.exit(game + ' evaluation isn\'t working yet. =( ')
@@ -277,7 +286,6 @@ def fitnessFunction(individual):
         primary_attr=0
         fitvalue=0
         agi=0
-        team_composition = 20
         if game == 'dota':
             for id_hero in individual:
                 for data in dataset:
@@ -296,9 +304,11 @@ def fitnessFunction(individual):
                                 pusher=10
                             else:
                                 pusher=0
-            fitvalue = agi+pusher+primary_attr
-            print (fitvalue)
-            fitvalue = (float(fitvalue)-1)/(210-1)
+            fitvalue = float(agi+pusher+primary_attr)
+            #normalization
+            fitvalue=(fitvalue-0)/(210-0)
+            print ('team fitness = ' +str(fitvalue))
+            #fitvalue = (float(fitvalue)-1)/(210-1)
 
         elif game == 'lol':
             sys.exit('League Of Legends evaluation isn\'t working yet. =( ')
