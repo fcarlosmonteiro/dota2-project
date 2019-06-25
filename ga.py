@@ -82,6 +82,7 @@ def checkTeam(individual, datasetParam):
 	team = False
 	sup = 0
 	hc = 0
+    
 	if not team:
 		for id_hero in individual:
 			for data in datasetParam:
@@ -194,8 +195,7 @@ def fitnessFunction(individual):
                     if checkTeam_out == False:
                         fitvalue=0
                         return fitvalue,
-
-                    if data['id']==str(id_hero):
+                    if data['id']==id_hero:
                         print(str(data['localized_name']))
                         attack = attack + data['stats']['attackdamage']
                         speed = speed + data['stats']['movespeed']
@@ -250,7 +250,7 @@ def fitnessFunction(individual):
                         fitvalue=0
                         return fitvalue,
 
-                    if data['id']==str(id_hero):
+                    if data['id']==id_hero:
                         print(str(data['localized_name']))
                         strength = strength + data['stats']['attackdamage']
                         #print("strength ", strength)
