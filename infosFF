@@ -1,4 +1,5 @@
 #------GANK------#
+#--DOTA 2--#
 #base_attack_max valor maximo = 70 e valor minimo = 11
 #move_speed valor maximo = 335 e valor minimo = 270
 
@@ -7,10 +8,21 @@
 
 #MAXIMUM FITNESS = 2075
 #MINIMUM FITNESS = 400
+
+#--LEAGUE OF LEGENDS--#
+#attackdamage valor maximo = 70 e valor minimo = 40
+#movespeed valor maximo = 355 e valor minimo = 315
+
+#POR TIME: attackdamage valor maximo = 350 e valor minimo = 200
+#POR TIME: movespeed valor maximo = 1675  e valor minimo = 1575
+
+#MAXIMUM FITNESS = 2075
+#MINIMUM FITNESS = 1775
 #------------------#
 
 
 #------TEAMFIGHT------#
+#--DOTA 2--#
 #base_str valor maximo = 30 e valor minimo = 12
 #attack_rate valor maximo = 2 e valor minimo = 1.3
 
@@ -19,6 +31,16 @@
 
 #MAXIMUM FITNESS = 210
 #MINIMUM FITNESS = 60
+
+#--LEAGUE OF LEGENDS--#
+#attackdamage valor maximo = 70 e valor minimo = 40
+#attackdamageperlevel valor maximo = 5 e valor minimo = 1.5
+
+#POR TIME: attackdamage valor maximo = 350 e valor minimo = 200
+#POR TIME: attackdamageperlevel valor maximo = 25  e valor minimo = 7.5
+
+#MAXIMUM FITNESS = 375
+#MINIMUM FITNESS = 207
 #------------------#
 
 #------PUSHER------#

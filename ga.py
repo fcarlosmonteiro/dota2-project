@@ -51,7 +51,7 @@ probmut = 0.7
 # Probabilidade De Dois Individuos Cruzarem
 probcross = 0.7
 # Quantidade maxima de Geracoes
-numgeracoes = 100
+numgeracoes = 500
 # Melhor resultado possivel da funcao de avaliacao
 resulfunc = 210.0
 
@@ -263,7 +263,7 @@ def fitnessFunction(individual):
                                 carry=carry-5
                         
             fitvalue=strength+atk_rate+carry
-            fitvalue = (float(fitvalue)*100)/(210)
+            fitvalue = (float(fitvalue)*100)/(375)
             print ('team fitness = ' +str(fitvalue))
         else:
             sys.exit(game + ' evaluation isn\'t working yet. =( ')
