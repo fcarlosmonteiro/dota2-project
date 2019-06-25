@@ -51,9 +51,9 @@ probmut = 0.7
 # Probabilidade De Dois Individuos Cruzarem
 probcross = 0.7
 # Quantidade maxima de Geracoes
-numgeracoes = 500
+numgeracoes = 200
 # Melhor resultado possivel da funcao de avaliacao
-resulfunc = 210.0
+resulfunc = 999999
 
 #####################################
 creator.create("FitnessMax", base.Fitness, weights=(1.0,))
@@ -203,7 +203,7 @@ def fitnessFunction(individual):
                             if r == "Fighter":
                                 initiator=10
                             else:
-                               pass
+                               initiator=0
                         
             fitvalue=attack+speed+initiator
             fitvalue = (float(fitvalue)*100)/(2075)
@@ -258,9 +258,9 @@ def fitnessFunction(individual):
                         #print("velocidade ", atk_rate)
                         for r in data['roles']:
                             if r == "Top":
-                                carry=carry+10
+                                carry=10
                             else:
-                                carry=carry-5
+                                carry=0
                         
             fitvalue=strength+atk_rate+carry
             fitvalue = (float(fitvalue)*100)/(375)
